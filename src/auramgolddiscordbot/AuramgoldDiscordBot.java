@@ -17,7 +17,6 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.impl.GameImpl;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.managers.Presence;
@@ -34,7 +33,9 @@ public class AuramgoldDiscordBot
 	public static JDA api;
 	public static Pattern userExtract = Pattern.compile("^(?:\\<\\@)?\\!?(\\d+)\\>?$");
 	
-	public static String locationOfMapText = "C:\\Users\\User\\Desktop\\Development Stuff\\genderlistfile.txt";
+	public static String locationOfMapText = "genderlistfile.txt";
+	public static String locationOfBotToken = "bot_token.txt";
+	public static String botToken;
 	
 	public static String[] cutOffFirst(String[] what)
 	{
@@ -63,6 +64,11 @@ public class AuramgoldDiscordBot
 				);
 			}
 		);
+	}
+	
+	public static void getBotToken() throws IOException
+	{
+		botToken = Files.readAllLines(Paths.get(locationOfBotToken)).get(0);
 	}
 	
 	public static String getTimeString()
@@ -115,19 +121,19 @@ public class AuramgoldDiscordBot
 	
 	public static void main(String[] args) throws LoginException, IllegalArgumentException, RateLimitedException, InterruptedException 
 	{
-		try {updateMapFromFile();} catch (IOException ex) {}
-		api = new JDABuilder(AccountType.BOT)
-					.setToken("MzQyNzU3NDcwMDQ2NzgxNDUw.DGUSqg.UHMK7nc4miCX6cRCU0S8PifSb9U").buildBlocking();
+		try
+		{
+			updateMapFromFile();
+			getBotToken();
+		} 
+		catch (IOException ex) 
+		{}
+		api = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
 		Presence pres = new PresenceImpl((JDAImpl)api); 
 		pres.setGame
-			(
-				new GameImpl
-					(
-						"maid!help for assistance",
-						"",
-						Game.GameType.DEFAULT
-					)
-			);
+		(
+			Game.of("maid!help for docs")
+		);
 		api.addEventListener(new AuramListener());
 	}
 	
