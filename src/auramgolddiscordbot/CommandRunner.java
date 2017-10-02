@@ -34,6 +34,13 @@ public class CommandRunner
 				{
 					return "*cleans up "+String.join(" ",args)+"*";
 				}
+			case "source":
+			case "code":
+			case "sourcecode":
+			case "github":
+				return "I am an open source bot, with my source code available"
+						+ " here: "
+						+ "https://github.com/auramgold/auramgold-discord-bot";
 			case "tableflip":
 				return "I'm sorry, "+who.getHonorific()+", "+
 							"but I can't flip tables. I clean them.";
