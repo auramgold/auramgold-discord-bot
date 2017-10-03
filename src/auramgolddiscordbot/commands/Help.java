@@ -23,7 +23,7 @@ public class Help extends BotCommand implements Documentable
 	@Override
 	public String getDocumentation(String[] what)
 	{
-		return "```maid!"+what[0]+" [command]\n"
+		return "```maid!" + what[0] + " [command]\n"
 				+ "	Shows detailed options of [command].\n"
 				+ "```";
 	}
@@ -50,7 +50,7 @@ public class Help extends BotCommand implements Documentable
 						String addition = "\n";
 						for(String alia: com.aliases)
 						{
-							addition += "`maid!"+alia+"`,";
+							addition += "`maid!" + alia + "`,";
 						}
 						addition = addition.substring(0,addition.length()-1)+":	";
 						addition += doccom.getShortDocumentation();
@@ -73,8 +73,8 @@ public class Help extends BotCommand implements Documentable
 					}
 				}
 			}
-			return "I am sorry, "+who.getHonorific()+", but "
-					+ params[0]+" is not a command I recognize.";
+			return "I am sorry, " + who.getHonorific() + ", but "
+					+ params[0] + " is not a command I recognize.";
 		}
 	}
 	

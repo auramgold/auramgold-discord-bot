@@ -14,7 +14,7 @@ import auramgolddiscordbot.RefUser;
  */
 public class Trash extends BotCommand implements Documentable
 {
-		public Trash(String... alias)
+	public Trash(String... alias)
 	{
 		super(alias);
 	}
@@ -36,10 +36,10 @@ public class Trash extends BotCommand implements Documentable
 	@Override
 	public String run(String command, String[] params, RefUser who)
 	{
-		String item = String.join(" ",params);
+		String item = String.join(" ", params);
 		item = AuramgoldDiscordBot.replacePronouns(item);
-		return "*gets rid of "+item+"*\nDon't worry, "+
-				who.getHonorific()+", I got that out of "
+		return "*gets rid of " + item + "*\nDon't worry, "
+				+ who.getHonorific() + ", I got that out of "
 				+ "your way.";
 	}
 }

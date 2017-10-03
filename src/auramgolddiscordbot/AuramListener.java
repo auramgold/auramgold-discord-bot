@@ -24,10 +24,12 @@ public class AuramListener extends ListenerAdapter
 		User messSender = event.getAuthor();
 		String content = message.getRawContent();
 		MessageChannel channel = event.getChannel();
-		String sender = messSender.getName()+"#"+messSender.getDiscriminator();
+		String sender = messSender.getName() + "#"
+						+ messSender.getDiscriminator();
 		String channelStr = channel.getName();
-		String recTime = "["+AuramgoldDiscordBot.getTimeString()+"]";
-		System.out.println(recTime+" "+sender+" in "+channelStr+":"+content);
+		String recTime = "[" + AuramgoldDiscordBot.getTimeString() + "]";
+		System.out.println(recTime + " " + sender 
+							+ " in " + channelStr + ":" + content);
 		if (event.getAuthor().isBot()) return;
 		// We don't want to respond to other bot accounts, including ourself
 		String cmdStart = content.substring(0, Math.min(AuramgoldDiscordBot.comStartLen,content.length()));
@@ -38,7 +40,11 @@ public class AuramListener extends ListenerAdapter
 			String ret = CommandRunner.runCommand(splitCommand, new RefUser(messSender), channel);
 			channel.sendMessage(ret).queue();
 		}
-		else if(content.contains("(╯°□°）╯︵ ┻━┻")&&(Math.random()<0.1||messSender.getId().equals("242391558664486913")))
+		else if(content.contains("(╯°□°）╯︵ ┻━┻")
+				&&	(
+					Math.random()<0.1
+					||messSender.getId().equals("242391558664486913")
+					))
 		{
 			channel.sendMessage("┬─┬﻿ ノ( ゜-゜ノ)").queue();
 		}

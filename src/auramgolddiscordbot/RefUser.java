@@ -22,12 +22,12 @@ public class RefUser extends UserImpl
 	{
 		super(id, api);
 		pers = RefList.getReference(Long.toString(id));
-		this.user = new UserImpl(id,api);
+		this.user = new UserImpl(id, api);
 	}
 	
 	public RefUser(User user)
 	{
-		super(user.getIdLong(),(JDAImpl)user.getJDA());
+		super(user.getIdLong(), (JDAImpl)user.getJDA());
 		this.user = user;
 		pers = RefList.getReference(Long.toString(id));
 	}
@@ -45,11 +45,11 @@ public class RefUser extends UserImpl
 	@Override
 	public String getName()
 	{
-		if((super.getName()!=null)&&!super.getName().equals("null"))
+		if((super.getName() != null) && !super.getName().equals("null"))
 		{
 			return super.getName();
 		}
-		else if((user.getName()!=null)&&!user.getName().equals("null"))
+		else if((user.getName() != null) && !user.getName().equals("null"))
 		{
 			return user.getName();
 		}

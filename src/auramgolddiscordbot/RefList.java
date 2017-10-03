@@ -24,7 +24,7 @@ public class RefList
 	{
 		if(!referenceList.containsKey(id))
 		{
-			referenceList.put(id,new PersonalReference());
+			referenceList.put(id, new PersonalReference());
 			updateFile();
 		}
 		return referenceList.get(id);
@@ -71,12 +71,12 @@ public class RefList
 	public static void updateFile()
 	{
 		String out = "";
-		for (Map.Entry<String, PersonalReference> entry : referenceList.entrySet())
+		for(Map.Entry<String, PersonalReference> entry : referenceList.entrySet())
 		{
 			String k = entry.getKey();
 			PersonalReference v = entry.getValue();
-			out = out.concat(k+"|"+v.getPronounIndex()+"|"+v.getName()+
-						"|"+v.netSpoil+"|"+v.morphState+"\n");
+			out = out.concat(k + "|" + v.getPronounIndex() + "|" + v.getName()
+							+ "|" + v.netSpoil + "|" + v.morphState + "\n");
 		}
 		File fnew=new File(AuramgoldDiscordBot.locationOfMapText);
 		

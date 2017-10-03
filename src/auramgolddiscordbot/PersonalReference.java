@@ -14,13 +14,13 @@ public class PersonalReference
 {
 	public static PronounRef[] gender = 
 	{
-		new PronounRef("they","them","their","theirs","themself","Mx.","comrade"),
-		new PronounRef("he","him","his","his","himself","Mr.","sir"),
-		new PronounRef("she","her","her","hers","herself","Ms.","ma'am"),
-		new PronounRef("ze","zir","zir","zirs","zirself","Mx.","comrade"),
-		new PronounRef("xe","xem","xyr","xyrs","xemself","Mx.","comrade"),
-		new PronounRef("ey","em","eir","eirs","eirself","Mx.","comrade"),
-		new PronounRef("ze","hir","hir","hirs","hirself","Mx.","comrade"),
+		new PronounRef("they", "them", "their", "theirs", "themself", "Mx.", "comrade"),
+		new PronounRef("he", "him", "his", "his", "himself", "Mr.", "sir"),
+		new PronounRef("she", "her", "her", "hers", "herself", "Ms.", "ma'am"),
+		new PronounRef("ze", "zir", "zir", "zirs", "zirself", "Mx.", "comrade"),
+		new PronounRef("xe", "xem", "xyr", "xyrs", "xemself", "Mx.", "comrade"),
+		new PronounRef("ey", "em", "eir", "eirs", "eirself", "Mx.", "comrade"),
+		new PronounRef("ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade"),
 	};
 	
 	protected String name;
@@ -32,7 +32,7 @@ public class PersonalReference
 	
 	public PersonalReference()
 	{
-		this(0,"",0,"");
+		this(0, "", 0, "");
 	}
 	
 	public PersonalReference(int ind, String nam, int spoil, String morph)
@@ -78,12 +78,12 @@ public class PersonalReference
 		if(!morphState.equals(""))
 		{
 			String article = AuramgoldDiscordBot.getArticle(morphState);
-			String extraSpace = morphState.endsWith(" ")?"":" ";
-			return article+" "+morphState+extraSpace+"form";
+			String extraSpace = morphState.endsWith(" ") ? "" : " ";
+			return article + " " + morphState + extraSpace + "form";
 		}
 		else
 		{
-			return getPronouns().possAdj+" default form";
+			return getPronouns().possAdj + " default form";
 		}
 	}
 	
@@ -130,7 +130,7 @@ public class PersonalReference
 	@Override
 	public String toString()
 	{
-		return this.getPronounIndex()+"|"+this.getName();
+		return this.getPronounIndex() + "|" + this.getName();
 	}
 	
 	

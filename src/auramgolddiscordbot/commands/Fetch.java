@@ -36,10 +36,10 @@ public class Fetch extends BotCommand implements Documentable
 	@Override
 	public String run(String command, String[] params, RefUser who)
 	{
-		String item = String.join(" ",params);
+		String item = String.join(" ", params);
 		item = AuramgoldDiscordBot.replacePronouns(item);
-		return "*brings you "+item+"*\nHere you go, "+
-				who.getHonorific()+".";
+		return "*brings you " + item + "*\nHere you go, "
+				+ who.getHonorific() + ".";
 	}
 	
 }

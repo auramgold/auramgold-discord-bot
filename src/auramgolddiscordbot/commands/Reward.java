@@ -24,7 +24,7 @@ public class Reward extends BotCommand implements Documentable
 	@Override
 	public String getDocumentation(String[] what)
 	{
-		return "`maid!"+what[0]+"` has no extra parameters.";
+		return "`maid!" + what[0] + "` has no extra parameters.";
 	}
 
 	@Override
@@ -40,11 +40,11 @@ public class Reward extends BotCommand implements Documentable
 		RefList.updateFile();
 		if(command.toLowerCase().equals("thank"))
 		{
-			return "You are very welcome, "+who.getHonorific()+".";
+			return "You are very welcome, " + who.getHonorific() + ".";
 		}
 		else
 		{
-			return "Thank you, "+who.getHonorific()+".";
+			return "Thank you, " + who.getHonorific()+".";
 		}
 	}
 	

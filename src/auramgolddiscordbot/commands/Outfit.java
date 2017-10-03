@@ -23,7 +23,7 @@ public class Outfit extends BotCommand implements Documentable
 	@Override
 	public String getDocumentation(String[] what) 
 	{
-		return "```maid!"+what[0]+" (usermention)\n"
+		return "```maid!" + what[0] + " (usermention)\n"
 				+ "	Puts (usermention) in a maid outfit\n"
 				+ " If not included, defaults to using executing user."
 				+ "```";
@@ -39,7 +39,7 @@ public class Outfit extends BotCommand implements Documentable
 	public String run(String command, String[] params, RefUser who)
 	{
 		String person;
-		if(params.length == 0||params[0].equals("me"))
+		if(params.length == 0 || params[0].equals("me"))
 		{
 			person = who.getId();
 		}
@@ -55,18 +55,18 @@ public class Outfit extends BotCommand implements Documentable
 			otherId = mat.group(1);
 			if(!otherId.equals("342757470046781450"))
 			{
-				return "*dresses "+"<@!"+otherId+">"+" in a maid uniform*";
+				return "*dresses " + "<@!" + otherId + ">" + " in a maid uniform*";
 			}
 			else
 			{
-				return "I'm sorry, "+who.getHonorific()+", "+
-						"but I'm already in a maid outfit.";
+				return "I'm sorry, " + who.getHonorific() + ", "
+						+ "but I'm already in a maid outfit.";
 			}
 		}
 		else
 		{
-			return "I can only put a user in a maid outfit, "+who.getHonorific()
-					+".";
+			return "I can only put a user in a maid outfit, "
+					+ who.getHonorific() + ".";
 		}
 	}
 }

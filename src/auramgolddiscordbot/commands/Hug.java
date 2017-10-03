@@ -25,7 +25,7 @@ public class Hug extends BotCommand implements Documentable
 	@Override
 	public String getDocumentation(String[] what)
 	{
-		return "```maid!"+what[0]+" (usermention)OR(text)(...)\n"
+		return "```maid!" + what[0] + " (usermention)OR(text)(...)\n"
 				+ "	Hugs (usermention), which is optional and can be\n"
 				+ "	Either an @mention or their user ID number\n"
 				+ "	If plain text is used, applies hug to plain text\n"
@@ -44,8 +44,8 @@ public class Hug extends BotCommand implements Documentable
 	{
 		if(params.length == 0)
 		{
-			return "*"+command+"s "+who.getPronouns().title+" "+
-				who.getAuramName()+".*";
+			return "*" + command + "s " + who.getPronouns().title + " "
+					+ who.getAuramName() + ".*";
 		}
 		else
 		{
@@ -56,20 +56,20 @@ public class Hug extends BotCommand implements Documentable
 				if(!otherId.equals("342757470046781450"))
 				{
 					String title = RefList.getPronounRef(otherId).title;
-					return "*"+command+"s "+
-						"<@!"+otherId+">"+".*";
+					return "*" + command + "s " 
+							+ "<@!" + otherId + ">" + ".*";
 				}
 				else
 				{
-					return "I'm sorry, "+
-							who.getHonorific()+", "+
-							"but I can't "+command+" myself.";
+					return "I'm sorry, "
+							+ who.getHonorific() + ", "
+							+ "but I can't " + command + " myself.";
 				}
 			}
 			else
 			{
-				return "*"+command+"s "+
-				String.join(" ",params)+".*";
+				return "*" + command + "s "
+						+ String.join(" ", params) + ".*";
 			}
 		}
 	}

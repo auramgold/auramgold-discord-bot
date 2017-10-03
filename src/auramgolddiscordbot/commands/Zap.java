@@ -52,7 +52,7 @@ class Morph implements Comparable<Morph>
 	public final MorphType type;
 	public final String name;
 	
-	public Morph(String name,MorphType type)
+	public Morph(String name, MorphType type)
 	{
 		this.type = type;
 		this.name = name;
@@ -60,7 +60,8 @@ class Morph implements Comparable<Morph>
 	
 	public boolean checkSame(Morph o)
 	{
-		return (o.type.equals(type)&&!o.type.equals(OTHER))||o.name.equals(name);
+		return (o.type.equals(type) && !o.type.equals(OTHER))
+				|| o.name.equals(name);
 	}
 
 	@Override
@@ -72,7 +73,7 @@ class Morph implements Comparable<Morph>
 
 public class Zap extends BotCommand implements Documentable
 {
-	public HashMap<MorphType,ArrayList<Morph>> transformations;
+	public HashMap<MorphType, ArrayList<Morph>> transformations;
 	public Zap(String... alias)
 	{
 		super(alias);
@@ -84,7 +85,7 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("old",AGE),new Morph("young",AGE)
+					new Morph("old", AGE), new Morph("young", AGE)
 				)
 			)
 		);
@@ -95,7 +96,7 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("four-breasted",OTHER),new Morph("muscular",OTHER)
+					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER)
 				)
 			)
 		);
@@ -106,12 +107,12 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("cat",ANIMAL),new Morph("dog",ANIMAL),
-					new Morph("horse",ANIMAL),new Morph("chipmunk",ANIMAL),
-					new Morph("mouse",ANIMAL),new Morph("raccoon",ANIMAL),
-					new Morph("jeremy-like",ANIMAL),new Morph("fox",ANIMAL),
-					new Morph("squirrel",ANIMAL),new Morph("bunny",ANIMAL),
-					new Morph("cow",ANIMAL),new Morph("pikachu",ANIMAL)
+					new Morph("cat", ANIMAL), new Morph("dog", ANIMAL),
+					new Morph("horse", ANIMAL), new Morph("chipmunk", ANIMAL),
+					new Morph("mouse", ANIMAL), new Morph("raccoon", ANIMAL),
+					new Morph("jeremy-like", ANIMAL), new Morph("fox", ANIMAL),
+					new Morph("squirrel", ANIMAL), new Morph("bunny", ANIMAL),
+					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL)
 				)
 			)
 		);
@@ -122,11 +123,11 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("blonde-haired",HAIR),new Morph("black-haired",HAIR),
-					new Morph("brown-haired",HAIR),new Morph("red-haired",HAIR),
-					new Morph("orange-haired",HAIR),new Morph("yellow-haired",HAIR),
-					new Morph("green-haired",HAIR),new Morph("blue-haired",HAIR),
-					new Morph("purple-haired",HAIR),new Morph("pink-haired",HAIR)
+					new Morph("blonde-haired", HAIR), new Morph("black-haired", HAIR),
+					new Morph("brown-haired", HAIR), new Morph("red-haired", HAIR),
+					new Morph("orange-haired", HAIR), new Morph("yellow-haired", HAIR),
+					new Morph("green-haired", HAIR), new Morph("blue-haired", HAIR),
+					new Morph("purple-haired", HAIR), new Morph("pink-haired", HAIR)
 				)
 			)
 		);
@@ -137,7 +138,7 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("half-sized",SIZE),new Morph("double-sized",SIZE)
+					new Morph("half-sized", SIZE), new Morph("double-sized", SIZE)
 				)
 			)
 		);
@@ -148,23 +149,23 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("heavy",WEIGHT),new Morph("thin",WEIGHT)
+					new Morph("heavy", WEIGHT), new Morph("thin", WEIGHT)
 				)
 			)
 		);
 		ArrayList<Morph> a = new ArrayList<>();
 		for(int i = 1; i <= 5; i++)
 		{
-			a.add(new Morph("MV"+i,SEX));
-			a.add(new Morph("FV"+i,SEX));
+			a.add(new Morph("MV" + i, SEX));
+			a.add(new Morph("FV" + i, SEX));
 		}
-		transformations.put(SEX,a);
+		transformations.put(SEX, a);
 	}
 	
 	protected String generateMorph()
 	{
 		Random currand = ThreadLocalRandom.current();
-		int count = 1+(currand.nextInt(1+currand.nextInt(7))%7);
+		int count = 1+(currand.nextInt(1+currand.nextInt(7)) % 7);
 		if(count == 7)
 		{
 			count = 0;
@@ -174,22 +175,16 @@ public class Zap extends BotCommand implements Documentable
 		{
 			return "";
 		}
-		for(int i = 0;i<count;i++)
+		for(int i = 0; i < count; i++)
 		{
 			boolean cont;
 			Morph addition;
 			do
 			{
-				int mindex = currand.nextInt
-				(
-					MorphType.values().length
-				);
+				int mindex = currand.nextInt(MorphType.values().length);
 				MorphType m = MorphType.values()[mindex];
 				int tracount = transformations.get(m).size();
-				addition = transformations.get(m).get
-				(
-					currand.nextInt(tracount)
-				);
+				addition = transformations.get(m).get(currand.nextInt(tracount));
 				boolean toAdd = true;
 				for(Morph app: apps)
 				{
@@ -206,7 +201,7 @@ public class Zap extends BotCommand implements Documentable
 		}
 		String ret = "";
 		Collections.sort(apps);
-		ret = apps.stream().map((app) -> app.name+" ").reduce(ret, String::concat);
+		ret = apps.stream().map((app) -> app.name + " ").reduce(ret, String::concat);
 		return ret;
 	}
 	
@@ -234,7 +229,7 @@ public class Zap extends BotCommand implements Documentable
 	public String run(String command, String[] params, RefUser who)
 	{
 		String person;
-		if(params.length == 0||params[params.length-1].equals("me"))
+		if(params.length == 0 || params[params.length-1].equals("me"))
 		{
 			person = who.getId();
 		}
@@ -278,16 +273,16 @@ public class Zap extends BotCommand implements Documentable
 			{
 				form = String.join(" ",morph);
 			}
-			if(form.equals("normal")||form.equals("default")||form.equals(""))
+			if(form.equals("normal") || form.equals("default") || form.equals(""))
 			{
 				form = "";
 			}
 			RefList.getReference(otherId).morphState = form;
 			if(form.equals(""))
 			{
-				return "*zaps "+"<@!"+otherId+">"+" back to "+
-						RefList.getReference(otherId).getPronouns().possAdj
-						+" default form.*";
+				return "*zaps " + "<@!" + otherId + ">" + " back to "
+						+ RefList.getReference(otherId).getPronouns().possAdj
+						+ " default form.*";
 			}
 			if(morph.length != 0)
 			{
@@ -296,13 +291,13 @@ public class Zap extends BotCommand implements Documentable
 			}
 			String article = AuramgoldDiscordBot.getArticle(form);
 			RefList.updateFile();
-			return "*zaps "+"<@!"+otherId+">"+" with "+article+" "+form
-				+ "morph.*";
+			return "*zaps " + "<@!" + otherId + ">" + " with " + article + " "
+					+ form + "morph.*";
 		}
 		else
 		{
-			return "I'm sorry, "+who.getHonorific()+", "+
-					"but I can't zap myself.";
+			return "I'm sorry, " + who.getHonorific() + ", "
+					+ "but I can't zap myself.";
 		}
 		
 	}

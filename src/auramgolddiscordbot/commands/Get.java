@@ -47,7 +47,7 @@ public class Get extends BotCommand implements Documentable
 		if(params.length >= 1)
 		{
 			String extr;
-			if(params.length==1)
+			if(params.length == 1)
 			{
 				extr = "me";
 			}
@@ -56,14 +56,14 @@ public class Get extends BotCommand implements Documentable
 				extr = params[1];
 			}
 			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(extr);
-			if(mat.matches()||extr.equals("me"))
+			if(mat.matches() || extr.equals("me"))
 			{
 				String otherId;
 				RefUser otherRef;
 				if(mat.matches())
 				{
 					otherId = mat.group(1);
-					otherRef = new RefUser(Long.parseLong(otherId),(JDAImpl)AuramgoldDiscordBot.api);
+					otherRef = new RefUser(Long.parseLong(otherId), (JDAImpl)AuramgoldDiscordBot.api);
 				}
 				else
 				{
@@ -81,25 +81,25 @@ public class Get extends BotCommand implements Documentable
 					case "sex":
 					case "pronoun":
 					case "pronouns":
-						ret = otherUserName+" use"+(isPlural?"":"s")+
-								" "+gend.subject+
-								"/"+gend.object+" pronouns, "+
-								who.getHonorific()+".";
+						ret = otherUserName + " use" + (isPlural ? "" : "s") 
+								+ " " + gend.subject
+								+ "/" + gend.object + " pronouns, "
+								+ who.getHonorific() + ".";
 						break;
 						
 					case "name":
 						String setNam = RefList.getName(otherId);
 						if(!setNam.equals(gend.honorific))
 						{
-							ret = otherUserName+" ha" + (isPlural ? "ve" : "s")
-									+ " me call "+who.getPronouns().object+" "+
-									setNam+", "+who.getHonorific()+".";
+							ret = otherUserName +" ha" + (isPlural ? "ve" : "s")
+									+ " me call " + who.getPronouns().object + " "
+									+ setNam + ", " + who.getHonorific() + ".";
 						}
 						else
 						{
-							ret = otherUserName+" ha" + (isPlural ? "ve" : "s")
-									+ " no set name with me"+
-									", "+who.getHonorific()+".";
+							ret = otherUserName + " ha" + (isPlural ? "ve" : "s")
+									+ " no set name with me"
+									+ ", " + who.getHonorific() + ".";
 						}
 						break;
 					case "form":
@@ -108,17 +108,17 @@ public class Get extends BotCommand implements Documentable
 						String namer = RefList.getName(otherId);
 						String finName = 
 							(
-								namer == null||
-								namer.length()==0||
-								namer.equals(otherRef.getHonorific())
+								namer == null
+								|| namer.length()==0
+								|| namer.equals(otherRef.getHonorific())
 							)
-							?otherUserName:namer;
-						ret = finName+" " + (finName.equals("they") ? "are" : "is")
-									+ " currently in "+otherRef.getMorph()+
-								", "+who.getHonorific()+".";
+							? otherUserName : namer;
+						ret = finName + " " + (finName.equals("they") ? "are" : "is")
+									+ " currently in " + otherRef.getMorph()
+									+ ", " + who.getHonorific() + ".";
 						break;
 					default:
-						return "Error: "+params[0]+" is not a gettable value.";
+						return "Error: " + params[0] + " is not a gettable value.";
 				}
 				return AuramgoldDiscordBot.capitalizeFirstLetter(ret);
 			}

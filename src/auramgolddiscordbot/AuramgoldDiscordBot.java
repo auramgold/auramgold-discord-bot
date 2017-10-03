@@ -80,15 +80,15 @@ public class AuramgoldDiscordBot
 	public static String replacePronouns(String input)
 	{
 		//i'm sorry for this
-		String repl = input.replaceAll("\\b(your)\\b","||FIRST_POSS||");
-		repl = repl.replaceAll("\\b(my)\\b","||SECOND_POSS||");
+		String repl = input.replaceAll("\\b(your)\\b", "||FIRST_POSS||");
+		repl = repl.replaceAll("\\b(my)\\b", "||SECOND_POSS||");
 		repl = repl.replaceAll("\\b(you)\\b", "||FIRST_OBJ||");
 		repl = repl.replaceAll("\\b(me)\\b", "||SECOND_OBJ||");
 		//now replace the processings with the real ones
-		repl = repl.replace("||FIRST_OBJ||","me");
-		repl = repl.replace("||FIRST_POSS||","my");
-		repl = repl.replace("||SECOND_OBJ||","you");
-		repl = repl.replace("||SECOND_POSS||","your");
+		repl = repl.replace("||FIRST_OBJ||", "me");
+		repl = repl.replace("||FIRST_POSS||", "my");
+		repl = repl.replace("||SECOND_OBJ||", "you");
+		repl = repl.replace("||SECOND_POSS||", "your");
 		return repl;
 	}
 	
@@ -103,7 +103,7 @@ public class AuramgoldDiscordBot
 	
 	public static String getArticle(String noun)
 	{
-		String sta = noun.substring(0,1);
+		String sta = noun.substring(0, 1);
 		switch(sta)
 		{
 			case "a":
@@ -130,10 +130,7 @@ public class AuramgoldDiscordBot
 		{}
 		api = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
 		Presence pres = new PresenceImpl((JDAImpl)api); 
-		pres.setGame
-		(
-			Game.of("maid!help for docs")
-		);
+		pres.setGame(Game.of("maid!help for docs"));
 		api.addEventListener(new AuramListener());
 	}
 	

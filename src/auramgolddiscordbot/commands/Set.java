@@ -34,13 +34,13 @@ public class Set extends BotCommand implements Documentable
 			{
 				validPronouns += ",";
 			}
-			validPronouns += pro.subject+"/"+pro.object;
+			validPronouns += pro.subject + "/" + pro.object;
 		}
 		return "```maid!set [settable] ...\n"
 				+ "================\n"
 				+ "	maid!set gender/sex/pronoun/pronouns [value]\n"
 				+ "		[value] can be:\n"
-				+ "		"+validPronouns+"\n"
+				+ "		" + validPronouns + "\n"
 				+ "		(If you want a pronoun that is not in that list, dm\n"
 				+ "		Lauren with that request)\n"
 				+ "		Defaults to they/them when [value] is not recognized\n"
@@ -69,7 +69,7 @@ public class Set extends BotCommand implements Documentable
 				String otherId = mat.group(1);
 				RefList.getReference(otherId);
 				person = AuramgoldDiscordBot.api.getUserById(otherId);
-				poss = person.getName()+"'s";
+				poss = person.getName() + "'s";
 			}
 		}
 		PersonalReference pers = RefList.getReference(person.getId());
@@ -82,18 +82,18 @@ public class Set extends BotCommand implements Documentable
 				if(params.length >=2)
 				{
 					int genderIndex = PersonalReference.getIndexOfString
-						(params.length > 1?params[1]:"they");
+						(params.length > 1 ? params[1] : "they");
 					pers.setPronouns(genderIndex);
 					RefList.referenceList.put(person.getId(),pers);
 					RefList.updateFile();
-					return "Set "+poss+" gender pronouns to " +
-							PersonalReference.gender[genderIndex].subject + "/" +
-							PersonalReference.gender[genderIndex].object;
+					return "Set " + poss + " gender pronouns to "
+							+ PersonalReference.gender[genderIndex].subject + "/"
+							+ PersonalReference.gender[genderIndex].object;
 				}
 				else
 				{
 					return "I can refer to people by these pronouns, "
-							+ who.getHonorific()+":"
+							+ who.getHonorific() + ":"
 							+ "```"
 							+ "\nThey/them"
 							+ "\nHe/him"
@@ -109,14 +109,12 @@ public class Set extends BotCommand implements Documentable
 				{
 					toJoin = AuramgoldDiscordBot.cutOffLast(toJoin);
 				}
-				pers.setName(
-					String.join(" ",toJoin)
-				);
-				RefList.referenceList.put(person.getId(),pers);
+				pers.setName(String.join(" ", toJoin));
+				RefList.referenceList.put(person.getId(), pers);
 				RefList.updateFile();
-				return "Set "+poss+" name to \""+pers.getName()+"\".";
+				return "Set " + poss + " name to \"" + pers.getName() + "\".";
 			default:
-				return "Error: "+params[0]+" is not a settable value.";
+				return "Error: " + params[0] + " is not a settable value.";
 		}
 	}
 	

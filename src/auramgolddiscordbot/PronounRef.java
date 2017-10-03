@@ -19,7 +19,7 @@ public class PronounRef
 	public String title;
 	public String honorific;
 	
-	public PronounRef(String s,String o,String pA,String pP,String r,String t,String h)
+	public PronounRef(String s, String o, String pA, String pP, String r, String t, String h)
 	{
 		this.subject = s;
 		this.object = o;

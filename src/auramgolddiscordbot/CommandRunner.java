@@ -16,7 +16,7 @@ public class CommandRunner
 {
 	public static CommandGroup commands = new CommandGroup();
 	
-	public static String runCommand(String[] command,RefUser who, MessageChannel chan)
+	public static String runCommand(String[] command, RefUser who, MessageChannel chan)
 	{
 		String[] args = AuramgoldDiscordBot.cutOffFirst(command);
 		switch(command[0])
