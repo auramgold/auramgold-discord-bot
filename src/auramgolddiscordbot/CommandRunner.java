@@ -9,13 +9,24 @@ import auramgolddiscordbot.commands.CommandGroup;
 import net.dv8tion.jda.core.entities.MessageChannel;
 
 /**
- *
+ * This class processes running commands
  * @author Lauren Smith
  */
 public class CommandRunner
 {
+
+	/**
+	 * The command group to check commands from
+	 */
 	public static CommandGroup commands = new CommandGroup();
 	
+	/**
+	 * Runs a given command.
+	 * @param command The input command, exploded on spaces
+	 * @param who The user who sent the command
+	 * @param chan The channel it was sent in.
+	 * @return What text to return to the user.
+	 */
 	public static String runCommand(String[] command, RefUser who, MessageChannel chan)
 	{
 		String[] args = AuramgoldDiscordBot.cutOffFirst(command);

@@ -23,30 +23,71 @@ import net.dv8tion.jda.core.managers.Presence;
 import net.dv8tion.jda.core.managers.impl.PresenceImpl;
 
 /**
- *
+ * The main class for the bot
  * @author Lauren Smith
  */
 public class AuramgoldDiscordBot
 {
+
+	/**
+	 * What string the command detection starts with.
+	 */
 	public static final String commandStart = "maid!";
+
+	/**
+	 * The length of AuramgoldDiscordBot.commandStart
+	 */
 	public static final int comStartLen = AuramgoldDiscordBot.commandStart.length();
+
+	/**
+	 * The API access object
+	 */
 	public static JDA api;
+
+	/**
+	 * The regex pattern to extract user IDs.
+	 */
 	public static Pattern userExtract = Pattern.compile("^(?:\\<\\@)?\\!?(\\d+)\\>?$");
 	
+	/**
+	 * Where the map file is located.
+	 */
 	public static String locationOfMapText = "genderlistfile.txt";
+
+	/**
+	 * Where the bot token file is located
+	 */
 	public static String locationOfBotToken = "bot_token.txt";
+
+	/**
+	 * Contains the token for the bot
+	 */
 	public static String botToken;
 	
+	/**
+	 * Removes the first element from an array of strings.
+	 * @param what The array to remove it from.
+	 * @return The array without its first element
+	 */
 	public static String[] cutOffFirst(String[] what)
 	{
 		return Arrays.copyOfRange(what, 1, what.length);
 	}
 	
+	/**
+	 * Removes the last element of an array of strings.
+	 * @param what The array to remove it from
+	 * @return The array without its last element
+	 */
 	public static String[] cutOffLast(String[] what)
 	{
 		return Arrays.copyOfRange(what, 0, what.length-1);
 	}
 	
+	/**
+	 * Gets the map file and extracts it to a format the program can use.
+	 * @throws IOException When something in the IO library fails.
+	 */
 	public static void updateMapFromFile() throws IOException
 	{
 		Files.lines(Paths.get(locationOfMapText)).forEach((String v)->
@@ -66,17 +107,31 @@ public class AuramgoldDiscordBot
 		);
 	}
 	
+	/**
+	 * Gets the bot token from the file.
+	 * @throws IOException When something in the IO library fails
+	 */
 	public static void getBotToken() throws IOException
 	{
 		botToken = Files.readAllLines(Paths.get(locationOfBotToken)).get(0);
 	}
 	
+	/**
+	 * Formats a time string nicely and simply
+	 * @return A time string in the format HH:mm:ss
+	 */
 	public static String getTimeString()
 	{
 		LocalTime tim = LocalTime.now();
 		return tim.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 	}
 	
+	/**
+	 * Swaps singular first-person pronouns for second-person ones<br/>
+	 * e.g. "I took your cookie" becomes "You took my cookie" 
+	 * @param input The string to swap
+	 * @return
+	 */
 	public static String replacePronouns(String input)
 	{
 		//i'm sorry for this
@@ -92,6 +147,11 @@ public class AuramgoldDiscordBot
 		return repl;
 	}
 	
+	/**
+	 * Capitalizes the first letter of a string.
+	 * @param original The string to capitalize
+	 * @return The capitalized string.
+	 */
 	public static String capitalizeFirstLetter(String original)
 	{
 		if (original == null || original.length() == 0)
@@ -101,6 +161,11 @@ public class AuramgoldDiscordBot
 		return original.substring(0, 1).toUpperCase() + original.substring(1);
 	}
 	
+	/**
+	 * Gets the article to use for a noun between 'a' and 'an'
+	 * @param noun The noun to check the article of
+	 * @return 'a' or 'an' depending on what should be used.
+	 */
 	public static String getArticle(String noun)
 	{
 		String sta = noun.substring(0, 1);
@@ -119,6 +184,14 @@ public class AuramgoldDiscordBot
 		}
 	}
 	
+	/**
+	 * Main method, runs at runtime.
+	 * @param args Command-line arguments, unused
+	 * @throws LoginException
+	 * @throws IllegalArgumentException
+	 * @throws RateLimitedException
+	 * @throws InterruptedException
+	 */
 	public static void main(String[] args) throws LoginException, IllegalArgumentException, RateLimitedException, InterruptedException 
 	{
 		try

@@ -12,6 +12,10 @@ package auramgolddiscordbot;
 
 public class PersonalReference
 {
+
+	/**
+	 * The list of <code>`PronounRef`</code>s that the program can use.
+	 */
 	public static PronounRef[] gender = 
 	{
 		new PronounRef("they", "them", "their", "theirs", "themself", "Mx.", "comrade"),
@@ -23,18 +27,42 @@ public class PersonalReference
 		new PronounRef("ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade"),
 	};
 	
+	/**
+	 * The set name of a given user
+	 */
 	protected String name;
-	public int cookies = 0;
-	public int cakes = 0;
+
+	/**
+	 * What morph the user is currently in
+	 */
 	public String morphState;
+
+	/**
+	 * The net amount the bot is "spoiled" by the given user.<br/>
+	 * Incremented for maid!praise, decremented for maid!punish
+	 */
 	public int netSpoil = 0;
+
+	/**
+	 * The index of the pronouns they use in the list.
+	 */
 	protected int pronounIndex;
 	
+	/**
+	 * Default constructor
+	 */
 	public PersonalReference()
 	{
 		this(0, "", 0, "");
 	}
 	
+	/**
+	 * Constructs a user with the given properties.
+	 * @param ind What pronoun index they use
+	 * @param nam Their name (not username!) as given to the bot
+	 * @param spoil Their net spoilage
+	 * @param morph The morph state they are currently in
+	 */
 	public PersonalReference(int ind, String nam, int spoil, String morph)
 	{
 		pronounIndex = ind;
@@ -43,27 +71,49 @@ public class PersonalReference
 		morphState = morph;
 	}
 	
+	/**
+	 * Gets the program name of a user
+	 * @return Their program name
+	 */
 	public String getName()
 	{
 		return name;
 	}
 	
+	/**
+	 * Sets the program name of a user
+	 * @param nam The name to set it to
+	 * @return <code>nam</code>
+	 */
 	public String setName(String nam)
 	{
 		name = nam.replace("\\|", "");
 		return name;
 	}
 	
+	/**
+	 * Gets the pronoun reference of a user
+	 * @return The <code>`PronounRef`</code> object of their pronoun index
+	 */
 	public PronounRef getPronouns()
 	{
 		return gender[pronounIndex];
 	}
 	
+	/**
+	 * Gets the pronoun index of a user
+	 * @return Their pronoun index
+	 */
 	public int getPronounIndex()
 	{
 		return pronounIndex;
 	}
 	
+	/**
+	 * Sets the pronoun index of a user
+	 * @param index The index to set it to
+	 * @return Their new PronounRef.
+	 */
 	public PronounRef setPronouns(int index)
 	{
 		if(0<=index && index <= gender.length)
@@ -73,6 +123,10 @@ public class PersonalReference
 		return gender[pronounIndex];
 	}
 	
+	/**
+	 * Gets the current morph state of a user
+	 * @return Their current morph state
+	 */
 	public String getMorph()
 	{
 		if(!morphState.equals(""))
@@ -87,6 +141,12 @@ public class PersonalReference
 		}
 	}
 	
+	/**
+	 * Gets the index of a given pronoun string, used to convert the inputs from the
+	 * command into usable things.
+	 * @param str The inputted string
+	 * @return The pronoun index of that string
+	 */
 	public static int getIndexOfString(String str)
 	{
 		switch(str)
@@ -127,6 +187,10 @@ public class PersonalReference
 		}
 	}
 
+	/**
+	 * Converts the object to a string.
+	 * @return The string representation of the object
+	 */
 	@Override
 	public String toString()
 	{

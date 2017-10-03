@@ -14,17 +14,21 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
 
 /**
- *
+ * Gets the value of a settable.
  * @author Lauren Smith
  */
 public class Get extends BotCommand implements Documentable
 {
 
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Get(String... alias)
 	{
 		super(alias);
 	}
-	
+
 	@Override
 	public String getDocumentation(String[] what)
 	{

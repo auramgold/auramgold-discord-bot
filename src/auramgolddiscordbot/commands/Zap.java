@@ -23,10 +23,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 
-/**
- *
- * @author Lauren Smith
- */
 enum MorphType
 {
 	SIZE (0),
@@ -71,9 +67,22 @@ class Morph implements Comparable<Morph>
 	}
 }
 
+/**
+ * Zaps a user with a morph
+ * @author Lauren Smith
+ */
 public class Zap extends BotCommand implements Documentable
 {
+
+	/**
+	 * The HashMap of morphs
+	 */
 	public HashMap<MorphType, ArrayList<Morph>> transformations;
+
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Zap(String... alias)
 	{
 		super(alias);
@@ -162,6 +171,10 @@ public class Zap extends BotCommand implements Documentable
 		transformations.put(SEX, a);
 	}
 	
+	/**
+	 * Generates a random morph
+	 * @return A string of a random morph
+	 */
 	protected String generateMorph()
 	{
 		Random currand = ThreadLocalRandom.current();
@@ -224,7 +237,7 @@ public class Zap extends BotCommand implements Documentable
 	{
 		return "Zaps a person with a TF gun enchant";
 	}
-	
+
 	@Override
 	public String run(String command, String[] params, RefUser who)
 	{

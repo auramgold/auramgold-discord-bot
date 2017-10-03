@@ -9,11 +9,16 @@ import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefUser;
 
 /**
- *
+ * Makes the bot get something.
  * @author Lauren Smith
  */
 public class Fetch extends BotCommand implements Documentable
 {
+
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Fetch(String... alias)
 	{
 		super(alias);

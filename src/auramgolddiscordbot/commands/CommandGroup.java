@@ -17,9 +17,20 @@ import java.util.logging.Logger;
  */
 public class CommandGroup
 {
+
+	/**
+	 * The ArrayList of commands.
+	 */
 	public static ArrayList<BotCommand> commands = new ArrayList<>();
+
+	/**
+	 * The list of aliases that are used.
+	 */
 	public static HashSet<String> aliases = new HashSet<>();
 	
+	/**
+	 * Constructs the command group.
+	 */
 	public CommandGroup()
 	{
 		try
@@ -50,6 +61,13 @@ public class CommandGroup
 		commands.add(comm);
 	}
 	
+	/**
+	 * Runs the given command
+	 * @param comm The command to be run
+	 * @param args The space-exploded arguments array
+	 * @param who The User who called the command
+	 * @return The outputted text.
+	 */
 	public String runCommand(String comm, String[] args, RefUser who)
 	{
 		for(BotCommand command: commands)
@@ -60,7 +78,7 @@ public class CommandGroup
 			}
 		}
 		return Math.random() > 0.5
-			?"I don't know how to " + comm + ", " + who.getHonorific() + "."
-			:"I'm sorry, " + who.getHonorific() + ", but I'm not sure I understood.";
+			? "I don't know how to " + comm + ", " + who.getHonorific() + "."
+			: "I'm sorry, " + who.getHonorific() + ", but I'm not sure I understood.";
 	}
 }

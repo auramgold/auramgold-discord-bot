@@ -10,17 +10,21 @@ import auramgolddiscordbot.RefUser;
 import net.dv8tion.jda.core.entities.User;
 
 /**
- *
+ * Gets a meme for a given input.
  * @author Lauren Smith
  */
 public class Meme extends BotCommand implements Documentable
 {
 
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Meme(String... alias)
 	{
 		super(alias);
 	}
-	
+
 	@Override
 	public String getDocumentation(String[] what) {
 		return "```maid!meme [word](...)\n"

@@ -14,11 +14,16 @@ import java.util.regex.Matcher;
 import net.dv8tion.jda.core.entities.User;
 
 /**
- *
+ * Sets a settable
  * @author Lauren Smith
  */
 public class Set extends BotCommand implements Documentable
 {
+
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Set(String... alias)
 	{
 		super(alias);

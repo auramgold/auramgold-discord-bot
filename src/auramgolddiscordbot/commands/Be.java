@@ -9,11 +9,16 @@ import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefUser;
 
 /**
- *
+ * Makes the bot be something.
  * @author Lauren Smith
  */
 public class Be extends BotCommand implements Documentable
 {
+
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Be(String... alias)
 	{
 		super(alias);

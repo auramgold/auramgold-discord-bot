@@ -10,17 +10,21 @@ import auramgolddiscordbot.RefUser;
 import net.dv8tion.jda.core.entities.User;
 
 /**
- *
+ * Punishes the bot
  * @author Lauren Smith
  */
 public class Punish extends BotCommand implements Documentable
 {
 	
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Punish(String... alias)
 	{
 		super(alias);
 	}
-	
+
 	@Override
 	public String getDocumentation(String[] what)
 	{

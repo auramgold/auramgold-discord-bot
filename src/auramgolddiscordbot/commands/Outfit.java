@@ -10,16 +10,21 @@ import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
 
 /**
- *
+ * Dresses a user in a maid outfit.
  * @author Lauren Smith
  */
 public class Outfit extends BotCommand implements Documentable
 {
+
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Outfit(String... alias)
 	{
 		super(alias);
 	}
-	
+
 	@Override
 	public String getDocumentation(String[] what) 
 	{

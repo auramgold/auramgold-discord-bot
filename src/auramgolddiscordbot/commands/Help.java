@@ -9,17 +9,21 @@ import auramgolddiscordbot.RefUser;
 import static auramgolddiscordbot.commands.CommandGroup.commands;
 
 /**
- *
+ * Gets info on commands and/or a given command.
  * @author Lauren Smith
  */
 public class Help extends BotCommand implements Documentable
 {
 
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Help(String... alias)
 	{
 		super(alias);
 	}
-	
+
 	@Override
 	public String getDocumentation(String[] what)
 	{

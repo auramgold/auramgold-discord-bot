@@ -12,11 +12,16 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 /**
- *
+ * This class listens for events and handles them.
  * @author Lauren Smith
  */
 public class AuramListener extends ListenerAdapter
 {
+
+	/**
+	 * What to do when a text message event is received
+	 * @param event The received event
+	 */
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event)
 	{

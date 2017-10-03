@@ -11,12 +11,16 @@ import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
 
 /**
- *
+ * Hugs a user
  * @author Lauren Smith
  */
 public class Hug extends BotCommand implements Documentable
 {
 	
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Hug(String... alias)
 	{
 		super(alias);
@@ -38,7 +42,7 @@ public class Hug extends BotCommand implements Documentable
 	{
 		return "Hugs a person.";
 	}
-	
+
 	@Override
 	public String run(String command, String[] params, RefUser who)
 	{

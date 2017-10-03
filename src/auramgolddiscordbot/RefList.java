@@ -18,8 +18,17 @@ import net.dv8tion.jda.core.entities.User;
  */
 public class RefList
 {
+
+	/**
+	 * The map of references for users
+	 */
 	public static Map<String, PersonalReference> referenceList = new HashMap<>();
 	
+	/**
+	 * Gets the <code>`PersonalReference`</code> object for a given user
+	 * @param id Their user ID as a string
+	 * @return Their <code>`PersonalReference`</code> object
+	 */
 	public static PersonalReference getReference(String id)
 	{
 		if(!referenceList.containsKey(id))
@@ -30,6 +39,11 @@ public class RefList
 		return referenceList.get(id);
 	}
 	
+	/**
+	 * Gets the program name of a user
+	 * @param user The <code>`User`</code> object to get it from
+	 * @return Their program name
+	 */
 	public static String getName(User user)
 	{
 		PersonalReference r = getReference(user.getId());
@@ -43,6 +57,11 @@ public class RefList
 		}
 	}
 	
+	/**
+	 * Gets the program name for a given user id
+	 * @param id The user id as a string
+	 * @return Their program name
+	 */
 	public static String getName(String id)
 	{
 		PersonalReference r = getReference(id);
@@ -56,18 +75,31 @@ public class RefList
 		}
 	}
 	
+	/**
+	 * Gets the <code>`PronounRef`</code> of a user
+	 * @param user The <code>`User`</code> object to get it from
+	 * @return Their program name
+	 */
 	public static PronounRef getPronounRef(User user)
 	{
 		PersonalReference r = getReference(user.getId());
 		return r.getPronouns();
 	}
 	
+	/**
+	 * Gets the <code>`PronounRef`</code> from a user id
+	 * @param id Their user id as a string
+	 * @return Their program name
+	 */
 	public static PronounRef getPronounRef(String id)
 	{
 		PersonalReference r = getReference(id);
 		return r.getPronouns();
 	}
 	
+	/**
+	 * Saves changes to file
+	 */
 	public static void updateFile()
 	{
 		String out = "";

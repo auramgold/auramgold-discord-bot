@@ -10,12 +10,16 @@ import auramgolddiscordbot.RefUser;
 import net.dv8tion.jda.core.entities.User;
 
 /**
- *
+ * Praises the bot
  * @author Lauren Smith
  */
 public class Reward extends BotCommand implements Documentable
 {
 	
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Reward(String... aliases)
 	{
 		super(aliases);

@@ -9,11 +9,16 @@ import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefUser;
 
 /**
- *
+ * Gets rid of something
  * @author Lauren Smith
  */
 public class Trash extends BotCommand implements Documentable
 {
+
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Trash(String... alias)
 	{
 		super(alias);

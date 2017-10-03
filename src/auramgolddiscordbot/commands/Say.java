@@ -8,12 +8,16 @@ package auramgolddiscordbot.commands;
 import auramgolddiscordbot.RefUser;
 
 /**
- *
+ * Says a thing in response to another thing
  * @author Lauren Smith
  */
 public class Say extends BotCommand implements Documentable
 {
 
+	/**
+	 * Constructs the command with given aliases.
+	 * @param alias
+	 */
 	public Say(String... alias)
 	{
 		super(alias);
