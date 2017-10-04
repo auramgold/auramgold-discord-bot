@@ -116,7 +116,7 @@ public class PersonalReference
 	 */
 	public PronounRef setPronouns(int index)
 	{
-		if(0<=index && index <= gender.length)
+		if(0 <= index && index < gender.length)
 		{
 			pronounIndex = index;
 		}

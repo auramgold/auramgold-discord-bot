@@ -78,7 +78,7 @@ public class Help extends BotCommand implements Documentable
 				}
 			}
 			return "I am sorry, " + who.getHonorific() + ", but "
-					+ params[0] + " is not a command I recognize.";
+					+ params[0] + " is not a valid documentable command.";
 		}
 	}
 	
