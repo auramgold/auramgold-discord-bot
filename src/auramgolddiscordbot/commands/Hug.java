@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefList;
+import java.util.ArrayList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -45,16 +46,16 @@ public class Hug extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
-		if(params.length == 0)
+		if(params.isEmpty())
 		{
 			return "*" + command + "s " + who.getPronouns().title + " "
 					+ who.getAuramName() + ".*";
 		}
 		else
 		{
-			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(params[0]);
+			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(params.get(0));
 			if(mat.matches())
 			{
 				String otherId = mat.group(1);

@@ -67,9 +67,10 @@ public class CommandGroup
 	 * @param comm The command to be run
 	 * @param args The space-exploded arguments array
 	 * @param who The User who called the command
-	 * @return The outputted text.
+	 * @param event the value of event
+	 * @return the java.lang.String
 	 */
-	public String runCommand(String comm, String[] args, RefUser who, MessageReceivedEvent event)
+	public String runCommand(String comm, ArrayList<String> args, RefUser who, MessageReceivedEvent event)
 	{
 		for(BotCommand command: commands)
 		{

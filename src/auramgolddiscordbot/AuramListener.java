@@ -5,6 +5,8 @@
  */
 package auramgolddiscordbot;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
@@ -41,7 +43,10 @@ public class AuramListener extends ListenerAdapter
 		if(cmdStart.equals(AuramgoldDiscordBot.commandStart))
 		{
 			String subCom = content.substring(AuramgoldDiscordBot.comStartLen);
-			String[] splitCommand = subCom.split(" ");
+			ArrayList<String> splitCommand = new ArrayList<>
+				(
+					Arrays.asList(subCom.split("\\s+"))
+				);
 			String ret = CommandRunner.runCommand(splitCommand, new RefUser(messSender), event);
 			channel.sendMessage(ret).queue();
 		}

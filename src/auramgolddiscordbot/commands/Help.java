@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.RefUser;
+import java.util.ArrayList;
 import static auramgolddiscordbot.commands.CommandGroup.commands;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -40,9 +41,9 @@ public class Help extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
-		if(params.length==0)
+		if(params.isEmpty())
 		{
 			String ret = "List of commands:";
 			for(BotCommand com: CommandGroup.commands)
@@ -72,14 +73,14 @@ public class Help extends BotCommand implements Documentable
 				if(com instanceof Documentable)
 				{
 					Documentable doccom = (Documentable)com;
-					if(com.checkAlias(params[0]))
+					if(com.checkAlias(params.get(0)))
 					{
-						return doccom.getDocumentation(params);
+						return doccom.getDocumentation((String[])params.toArray());
 					}
 				}
 			}
 			return "I am sorry, " + who.getHonorific() + ", but "
-					+ params[0] + " is not a valid documentable command.";
+					+ params.get(0) + " is not a valid documentable command.";
 		}
 	}
 	

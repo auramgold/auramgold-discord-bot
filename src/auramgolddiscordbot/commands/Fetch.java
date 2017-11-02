@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
+import java.util.ArrayList;
 import auramgolddiscordbot.RefUser;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -40,7 +41,7 @@ public class Fetch extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
 		String item = String.join(" ", params);
 		item = AuramgoldDiscordBot.replacePronouns(item);

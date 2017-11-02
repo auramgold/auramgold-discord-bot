@@ -11,6 +11,7 @@ import auramgolddiscordbot.PronounRef;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
+import java.util.ArrayList;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -63,13 +64,13 @@ public class Set extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
 		User person = who;
 		String poss = "your";
-		if(params.length >= 3 && who.getId().equals("242391558664486913"))
+		if(params.size() >= 3 && who.getId().equals("242391558664486913"))
 		{
-			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(params[params.length-1]);
+			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(params.get(params.size()-1));
 			if(mat.matches())
 			{
 				String otherId = mat.group(1);
@@ -79,16 +80,16 @@ public class Set extends BotCommand implements Documentable
 			}
 		}
 		PersonalReference pers = RefList.getReference(person.getId());
-		switch(params[0])
+		switch(params.get(0))
 		{
 			case "gender":
 			case "sex":
 			case "pronoun":
 			case "pronouns":
-				if(params.length >=2)
+				if(params.size() >=2)
 				{
 					int genderIndex = PersonalReference.getIndexOfString
-						(params.length > 1 ? params[1] : "they");
+						(params.size() > 1 ? params.get(1) : "they");
 					pers.setPronouns(genderIndex);
 					RefList.referenceList.put(person.getId(),pers);
 					RefList.updateFile();
@@ -110,17 +111,18 @@ public class Set extends BotCommand implements Documentable
 							+ "\nZe/hir```";
 				}
 			case "name":
-				String[] toJoin = AuramgoldDiscordBot.cutOffFirst(params);
+				ArrayList<String> toJoin = (ArrayList<String>)params.clone();
+				toJoin.remove(0);
 				if(!person.getId().equals(who.getId()))
 				{
-					toJoin = AuramgoldDiscordBot.cutOffLast(toJoin);
+					toJoin.remove(toJoin.size() - 1);
 				}
 				pers.setName(String.join(" ", toJoin));
 				RefList.referenceList.put(person.getId(), pers);
 				RefList.updateFile();
 				return "Set " + poss + " name to \"" + pers.getName() + "\".";
 			default:
-				return "Error: " + params[0] + " is not a settable value.";
+				return "Error: " + params.get(0) + " is not a settable value.";
 		}
 	}
 	

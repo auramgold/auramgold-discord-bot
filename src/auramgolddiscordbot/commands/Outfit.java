@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefUser;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -42,16 +43,16 @@ public class Outfit extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
 		String person;
-		if(params.length == 0 || params[0].equals("me"))
+		if(params.isEmpty() || params.get(0).equals("me"))
 		{
 			person = who.getId();
 		}
 		else
 		{
-			person = params[0];
+			person = params.get(0);
 		}
 
 		Matcher mat = AuramgoldDiscordBot.userExtract.matcher(person);

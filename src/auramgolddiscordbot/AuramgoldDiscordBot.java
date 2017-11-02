@@ -65,26 +65,6 @@ public class AuramgoldDiscordBot
 	public static String botToken;
 	
 	/**
-	 * Removes the first element from an array of strings.
-	 * @param what The array to remove it from.
-	 * @return The array without its first element
-	 */
-	public static String[] cutOffFirst(String[] what)
-	{
-		return Arrays.copyOfRange(what, 1, what.length);
-	}
-	
-	/**
-	 * Removes the last element of an array of strings.
-	 * @param what The array to remove it from
-	 * @return The array without its last element
-	 */
-	public static String[] cutOffLast(String[] what)
-	{
-		return Arrays.copyOfRange(what, 0, what.length-1);
-	}
-	
-	/**
 	 * Gets the map file and extracts it to a format the program can use.
 	 * @throws IOException When something in the IO library fails.
 	 */

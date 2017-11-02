@@ -23,14 +23,10 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
-import net.dv8tion.jda.core.entities.impl.MemberImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.exceptions.HierarchyException;
 import net.dv8tion.jda.core.managers.GuildController;
-import net.dv8tion.jda.core.utils.PermissionUtil;
 
 enum MorphType
 {
@@ -248,17 +244,17 @@ public class Zap extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
 		GuildController ctrlr = event.getGuild().getController();
 		String person;
-		if(params.length == 0 || params[params.length-1].equals("me"))
+		if(params.isEmpty() || params.get(params.size() - 1).equals("me"))
 		{
 			person = who.getId();
 		}
 		else
 		{
-			person = params[params.length-1];
+			person = params.get(params.size() - 1);
 		}
 
 		Matcher mat = AuramgoldDiscordBot.userExtract.matcher(person);
@@ -276,21 +272,18 @@ public class Zap extends BotCommand implements Documentable
 		{
 			RefUser targ = new RefUser(Long.parseLong(otherId),(JDAImpl)AuramgoldDiscordBot.api);
 			Member targM = event.getGuild().getMember(targ);
-			String[] morph;
-			if(params.length > 0 && mat.matches())
+			ArrayList<String> morph;
+			morph = (ArrayList<String>)params.clone();
+			if(!params.isEmpty() && mat.matches())
 			{
-				morph = AuramgoldDiscordBot.cutOffLast(params);
+				morph.remove(morph.size() - 1);
 			}
-			else if(!mat.matches())
+			else if(params.isEmpty())
 			{
-				morph = params;
-			}
-			else
-			{
-				morph = new String[0];
+				morph = new ArrayList<>();
 			}
 			String form;
-			if(morph.length == 0)
+			if(morph.isEmpty())
 			{
 				form = generateMorph();
 			}
@@ -317,7 +310,7 @@ public class Zap extends BotCommand implements Documentable
 						+ RefList.getReference(otherId).getPronouns().possAdj
 						+ " default form.*";
 			}
-			if(morph.length != 0)
+			if(!morph.isEmpty())
 			{
 				form += " ";
 				RefList.getReference(otherId).morphState = form;

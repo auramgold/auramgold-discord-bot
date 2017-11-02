@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.RefUser;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -51,5 +52,5 @@ public abstract class BotCommand
 	 * @param event the value of event
 	 * @return the java.lang.String
 	 */
-	public abstract String run(String command, String[] params, RefUser who, MessageReceivedEvent event);
+	public abstract String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event);
 }

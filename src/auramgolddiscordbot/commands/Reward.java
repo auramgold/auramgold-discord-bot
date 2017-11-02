@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
+import java.util.ArrayList;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -39,7 +40,7 @@ public class Reward extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
 		RefList.getReference(who.getId()).netSpoil++;
 		RefList.updateFile();

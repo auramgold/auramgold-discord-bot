@@ -6,7 +6,9 @@
 package auramgolddiscordbot;
 
 import auramgolddiscordbot.commands.CommandGroup;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -26,21 +28,22 @@ public class CommandRunner
 	 * Runs a given command.
 	 * @param command The input command, exploded on spaces
 	 * @param who The user who sent the command
-	 * @param chan The channel it was sent in.
-	 * @return What text to return to the user.
+	 * @param event the value of event
+	 * @return the java.lang.String
 	 */
-	public static String runCommand(String[] command, RefUser who, MessageReceivedEvent event)
+	public static String runCommand(ArrayList<String> command, RefUser who, MessageReceivedEvent event)
 	{
+		//System.out.println(command);
 		MessageChannel chan = event.getChannel();
-		String[] args = AuramgoldDiscordBot.cutOffFirst(command);
-		switch(command[0])
+		ArrayList<String> args = new ArrayList<>(command.subList(1, command.size()));
+		switch(command.get(0))
 		{
 			case "ping":
 				return "Pong!";
 			case "breathe":
 				return "https://www.youtube.com/watch?v=C1STpYAFxJk&t=2s";
 			case "clean":
-				if(args.length == 0)
+				if(args.isEmpty())
 				{
 					return "*cleans up #"+chan.getName()+"*";
 				}
@@ -63,7 +66,7 @@ public class CommandRunner
 				return "I'm sorry, "+who.getHonorific()+", "+
 							"but I can't flip tables. I clean them.";
 			default:
-				return commands.runCommand(command[0], args, who, event);
+				return commands.runCommand(command.get(0), args, who, event);
 		}
 	}
 	

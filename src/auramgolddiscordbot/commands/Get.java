@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.PronounRef;
+import java.util.ArrayList;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
@@ -47,18 +48,18 @@ public class Get extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
+	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
-		if(params.length >= 1)
+		if(!params.isEmpty())
 		{
 			String extr;
-			if(params.length == 1)
+			if(params.size() == 1)
 			{
 				extr = "me";
 			}
 			else
 			{
-				extr = params[1];
+				extr = params.get(1);
 			}
 			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(extr);
 			if(mat.matches() || extr.equals("me"))
@@ -80,7 +81,7 @@ public class Get extends BotCommand implements Documentable
 				PronounRef gend = RefList.getPronounRef(otherId);
 				boolean isPlural = otherUserName.equals("they");
 				String ret;
-				switch(params[0])
+				switch(params.get(0))
 				{
 					case "gender":
 					case "sex":
@@ -123,7 +124,7 @@ public class Get extends BotCommand implements Documentable
 									+ ", " + who.getHonorific() + ".";
 						break;
 					default:
-						return "Error: " + params[0] + " is not a gettable value.";
+						return "Error: " + params.get(0) + " is not a gettable value.";
 				}
 				return AuramgoldDiscordBot.capitalizeFirstLetter(ret);
 			}
