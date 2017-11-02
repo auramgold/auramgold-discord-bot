@@ -45,7 +45,8 @@ public class AuramListener extends ListenerAdapter
 			String subCom = content.substring(AuramgoldDiscordBot.comStartLen);
 			ArrayList<String> splitCommand = new ArrayList<>
 				(
-					Arrays.asList(subCom.split("\\s+"))
+					Arrays.asList(subCom.split("(?U)\\s+"))
+					//the U is for unicode space characters
 				);
 			String ret = CommandRunner.runCommand(splitCommand, new RefUser(messSender), event);
 			channel.sendMessage(ret).queue();

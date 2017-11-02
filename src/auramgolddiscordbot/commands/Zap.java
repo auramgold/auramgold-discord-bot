@@ -246,15 +246,27 @@ public class Zap extends BotCommand implements Documentable
 	@Override
 	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
+		boolean notSelfTarget = false;
 		GuildController ctrlr = event.getGuild().getController();
 		String person;
-		if(params.isEmpty() || params.get(params.size() - 1).equals("me"))
+		if(params.isEmpty())
 		{
 			person = who.getId();
+		}
+		else if(params.get(params.size() - 1).equals("me"))
+		{
+			person = who.getId();
+			params.remove(params.size() - 1);
+		}
+		else if(params.get(0).equals("me"))
+		{
+			person = who.getId();
+			params.remove(0);
 		}
 		else
 		{
 			person = params.get(params.size() - 1);
+			notSelfTarget = true;
 		}
 
 		Matcher mat = AuramgoldDiscordBot.userExtract.matcher(person);
@@ -262,10 +274,23 @@ public class Zap extends BotCommand implements Documentable
 		if(mat.matches())
 		{
 			otherId = mat.group(1);
+			if(!params.isEmpty() && notSelfTarget)
+			{
+				params.remove(params.size() - 1);
+			}
 		}
 		else
 		{
-			otherId = who.getId();
+			Matcher mat2 = AuramgoldDiscordBot.userExtract.matcher(params.get(0));
+			if(mat2.matches() && notSelfTarget)
+			{
+				otherId = mat2.group(1);
+				params.remove(0);
+			}
+			else
+			{
+				otherId = who.getId();
+			}
 		}
 			
 		if(!otherId.equals("342757470046781450"))
@@ -274,14 +299,6 @@ public class Zap extends BotCommand implements Documentable
 			Member targM = event.getGuild().getMember(targ);
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
-			if(!params.isEmpty() && mat.matches())
-			{
-				morph.remove(morph.size() - 1);
-			}
-			else if(params.isEmpty())
-			{
-				morph = new ArrayList<>();
-			}
 			String form;
 			if(morph.isEmpty())
 			{
@@ -317,21 +334,21 @@ public class Zap extends BotCommand implements Documentable
 			}
 			String article = AuramgoldDiscordBot.getArticle(form);
 			RefList.updateFile();
-			String nick = AuramgoldDiscordBot.capitalizeFirstLetter(form)
-							+ (!targ.getAuramName().equals(targ.getPronouns().subject)
-								?targ.getAuramName()
-								:targM.getEffectiveName());
-			System.out.println("    Attempted to name "
-								+ targM.getEffectiveName() + " \""
-								+ nick + "\"");
-			try
-			{
-				ctrlr.setNickname(targM,nick).queueAfter(250, TimeUnit.MILLISECONDS);
-			}
-			catch(Exception ex)
-			{
-				System.out.println("    Couldn't nickname the user.");
-			}
+//			String nick = AuramgoldDiscordBot.capitalizeFirstLetter(form)
+//							+ (!targ.getAuramName().equals(targ.getPronouns().subject)
+//								?targ.getAuramName()
+//								:targM.getEffectiveName());
+//			System.out.println("    Attempted to name "
+//								+ targM.getEffectiveName() + " \""
+//								+ nick + "\"");
+//			try
+//			{
+//				ctrlr.setNickname(targM,nick).queueAfter(250, TimeUnit.MILLISECONDS);
+//			}
+//			catch(Exception ex)
+//			{
+//				System.out.println("    Couldn't nickname the user.");
+//			}
 			return "*zaps " + "<@!" + otherId + ">" + " with " + article + " "
 					+ form + "morph.*";
 		}
