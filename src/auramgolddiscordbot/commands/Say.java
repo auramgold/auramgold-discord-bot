@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.RefUser;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Says a thing in response to another thing
@@ -38,7 +39,7 @@ public class Say extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		String statement = String.join(" ", params).toLowerCase();
 		String honor = who.getHonorific();

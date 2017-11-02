@@ -12,6 +12,7 @@ import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
 import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Sets a settable
@@ -62,7 +63,7 @@ public class Set extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		User person = who;
 		String poss = "your";

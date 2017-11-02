@@ -12,6 +12,7 @@ import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets the value of a settable.
@@ -46,7 +47,7 @@ public class Get extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		if(params.length >= 1)
 		{

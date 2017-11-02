@@ -21,7 +21,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.impl.JDAImpl;
+import net.dv8tion.jda.core.entities.impl.MemberImpl;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.exceptions.HierarchyException;
+import net.dv8tion.jda.core.managers.GuildController;
+import net.dv8tion.jda.core.utils.PermissionUtil;
 
 enum MorphType
 {
@@ -239,8 +248,9 @@ public class Zap extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
+		GuildController ctrlr = event.getGuild().getController();
 		String person;
 		if(params.length == 0 || params[params.length-1].equals("me"))
 		{
@@ -264,6 +274,8 @@ public class Zap extends BotCommand implements Documentable
 			
 		if(!otherId.equals("342757470046781450"))
 		{
+			RefUser targ = new RefUser(Long.parseLong(otherId),(JDAImpl)AuramgoldDiscordBot.api);
+			Member targM = event.getGuild().getMember(targ);
 			String[] morph;
 			if(params.length > 0 && mat.matches())
 			{
@@ -293,6 +305,14 @@ public class Zap extends BotCommand implements Documentable
 			RefList.getReference(otherId).morphState = form;
 			if(form.equals(""))
 			{
+//				try
+//				{
+//					ctrlr.setNickname(targM,"").completeAfter(250, TimeUnit.MILLISECONDS);
+//				}
+//				catch(Exception ex)
+//				{
+//					System.out.println("    Couldn't nickname the user.");
+//				}
 				return "*zaps " + "<@!" + otherId + ">" + " back to "
 						+ RefList.getReference(otherId).getPronouns().possAdj
 						+ " default form.*";
@@ -304,6 +324,21 @@ public class Zap extends BotCommand implements Documentable
 			}
 			String article = AuramgoldDiscordBot.getArticle(form);
 			RefList.updateFile();
+			String nick = AuramgoldDiscordBot.capitalizeFirstLetter(form)
+							+ (!targ.getAuramName().equals(targ.getPronouns().subject)
+								?targ.getAuramName()
+								:targM.getEffectiveName());
+			System.out.println("    Attempted to name "
+								+ targM.getEffectiveName() + " \""
+								+ nick + "\"");
+			try
+			{
+				ctrlr.setNickname(targM,nick).queueAfter(250, TimeUnit.MILLISECONDS);
+			}
+			catch(Exception ex)
+			{
+				System.out.println("    Couldn't nickname the user.");
+			}
 			return "*zaps " + "<@!" + otherId + ">" + " with " + article + " "
 					+ form + "morph.*";
 		}

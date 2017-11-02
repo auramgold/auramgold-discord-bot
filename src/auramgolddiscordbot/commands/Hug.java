@@ -9,6 +9,7 @@ import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Hugs a user
@@ -44,7 +45,7 @@ public class Hug extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		if(params.length == 0)
 		{

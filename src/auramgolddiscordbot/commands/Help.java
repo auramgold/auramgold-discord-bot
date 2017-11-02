@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.RefUser;
 import static auramgolddiscordbot.commands.CommandGroup.commands;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets info on commands and/or a given command.
@@ -39,7 +40,7 @@ public class Help extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		if(params.length==0)
 		{

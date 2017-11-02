@@ -8,6 +8,7 @@ package auramgolddiscordbot.commands;
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Dresses a user in a maid outfit.
@@ -41,7 +42,7 @@ public class Outfit extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		String person;
 		if(params.length == 0 || params[0].equals("me"))

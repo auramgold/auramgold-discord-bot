@@ -6,7 +6,9 @@
 package auramgolddiscordbot;
 
 import auramgolddiscordbot.commands.CommandGroup;
+import java.util.Collections;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * This class processes running commands
@@ -27,8 +29,9 @@ public class CommandRunner
 	 * @param chan The channel it was sent in.
 	 * @return What text to return to the user.
 	 */
-	public static String runCommand(String[] command, RefUser who, MessageChannel chan)
+	public static String runCommand(String[] command, RefUser who, MessageReceivedEvent event)
 	{
+		MessageChannel chan = event.getChannel();
 		String[] args = AuramgoldDiscordBot.cutOffFirst(command);
 		switch(command[0])
 		{
@@ -52,11 +55,15 @@ public class CommandRunner
 				return "I am an open source bot, with my source code available"
 						+ " here: "
 						+ "https://github.com/auramgold/auramgold-discord-bot";
+			case "clear":
+				return "Clearing: \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+						+ "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+						+ ".";
 			case "tableflip":
 				return "I'm sorry, "+who.getHonorific()+", "+
 							"but I can't flip tables. I clean them.";
 			default:
-				return commands.runCommand(command[0], args, who);
+				return commands.runCommand(command[0], args, who, event);
 		}
 	}
 	

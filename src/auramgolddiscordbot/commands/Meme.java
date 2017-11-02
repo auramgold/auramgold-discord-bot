@@ -8,6 +8,7 @@ package auramgolddiscordbot.commands;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets a meme for a given input.
@@ -38,7 +39,7 @@ public class Meme extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who) {
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event) {
 		String statement = String.join(" ", params).toLowerCase();
 		switch(statement)
 		{
@@ -65,6 +66,9 @@ public class Meme extends BotCommand implements Documentable
 				{
 					return "It is only possible to learn this power from a Lauren...";
 				}
+			case "sand":
+			case "i hate sand":
+				return "I hate sand, it's rough, irritating, and gets everywhere";
 			case "no":
 			case "noo":
 			case "nooo":

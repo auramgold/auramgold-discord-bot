@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  *
@@ -41,10 +42,10 @@ public class CommandGroup
 			addCommand(new Meme("meme"));
 			addCommand(new Say("say"));
 			addCommand(new Hug("hug", "glomp"));
-			addCommand(new Punish("hit", "whip", "punish", "smack", "slap"));
+			addCommand(new Punish("hit", "whip", "punish", "smack", "slap", "bap"));
 			addCommand(new Reward("praise", "reward", "thank"));
 			addCommand(new Fetch("fetch", "fetchme", "getme"));
-			addCommand(new Trash("trash", "disposeof", "destroy", "getridof"));
+			addCommand(new Trash("trash", "disposeof", "destroy", "getridof","begonewith"));
 			addCommand(new Be("be"));
 			addCommand(new Zap("zap", "pew"));
 			addCommand(new Outfit("dress", "outfit", "uniform"));
@@ -68,13 +69,13 @@ public class CommandGroup
 	 * @param who The User who called the command
 	 * @return The outputted text.
 	 */
-	public String runCommand(String comm, String[] args, RefUser who)
+	public String runCommand(String comm, String[] args, RefUser who, MessageReceivedEvent event)
 	{
 		for(BotCommand command: commands)
 		{
 			if(command.checkAlias(comm))
 			{
-				return command.run(comm, args, who);
+				return command.run(comm, args, who, event);
 			}
 		}
 		return Math.random() > 0.5

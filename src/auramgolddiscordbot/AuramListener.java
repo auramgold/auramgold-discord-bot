@@ -42,7 +42,7 @@ public class AuramListener extends ListenerAdapter
 		{
 			String subCom = content.substring(AuramgoldDiscordBot.comStartLen);
 			String[] splitCommand = subCom.split(" ");
-			String ret = CommandRunner.runCommand(splitCommand, new RefUser(messSender), channel);
+			String ret = CommandRunner.runCommand(splitCommand, new RefUser(messSender), event);
 			channel.sendMessage(ret).queue();
 		}
 		else if(content.contains("(╯°□°）╯︵ ┻━┻")

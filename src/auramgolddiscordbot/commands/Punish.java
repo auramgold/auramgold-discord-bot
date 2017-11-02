@@ -8,6 +8,7 @@ package auramgolddiscordbot.commands;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Punishes the bot
@@ -38,7 +39,7 @@ public class Punish extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String run(String command, String[] params, RefUser who)
+	public String run(String command, String[] params, RefUser who, MessageReceivedEvent event)
 	{
 		RefList.getReference(who.getId()).netSpoil--;
 		RefList.updateFile();
