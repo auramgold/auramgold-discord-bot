@@ -27,9 +27,9 @@ public class Help extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
-		return "```maid!" + what[0] + " [command]\n"
+		return "```maid!" + what.get(0) + " [command]\n"
 				+ "	Shows detailed options of [command].\n"
 				+ "```";
 	}
@@ -75,7 +75,7 @@ public class Help extends BotCommand implements Documentable
 					Documentable doccom = (Documentable)com;
 					if(com.checkAlias(params.get(0)))
 					{
-						return doccom.getDocumentation((String[])params.toArray());
+						return doccom.getDocumentation(params);
 					}
 				}
 			}

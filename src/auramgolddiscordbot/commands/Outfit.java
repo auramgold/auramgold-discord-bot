@@ -28,9 +28,9 @@ public class Outfit extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String getDocumentation(String[] what) 
+	public String getDocumentation(ArrayList<String> what) 
 	{
-		return "```maid!" + what[0] + " (usermention)\n"
+		return "```maid!" + what.get(0) + " (usermention)\n"
 				+ "	Puts (usermention) in a maid outfit\n"
 				+ " If not included, defaults to using executing user."
 				+ "```";

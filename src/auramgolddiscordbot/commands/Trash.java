@@ -27,7 +27,7 @@ public class Trash extends BotCommand implements Documentable
 	}
 	
 	@Override
-	public String getDocumentation(String[] what) 
+	public String getDocumentation(ArrayList<String> what) 
 	{
 		return "```maid!trash [item](...)\n"
 				+ "	Gets rid of [item]\n"

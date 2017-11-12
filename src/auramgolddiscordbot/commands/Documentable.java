@@ -5,6 +5,8 @@
  */
 package auramgolddiscordbot.commands;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Lauren Smith
@@ -17,7 +19,7 @@ public interface Documentable
 	 * @param what The input after the help command
 	 * @return The documentation
 	 */
-	public abstract String getDocumentation(String[] what);
+	public abstract String getDocumentation(ArrayList<String> what);
 
 	/**
 	 * Gets the short documentation for the command

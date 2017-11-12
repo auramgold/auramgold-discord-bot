@@ -28,7 +28,7 @@ public class Meme extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String getDocumentation(String[] what) {
+	public String getDocumentation(ArrayList<String> what) {
 		return "```maid!meme [word](...)\n"
 				+ "	Try the name of any prequel meme, that's a good trick.\n"
 				+ "```";

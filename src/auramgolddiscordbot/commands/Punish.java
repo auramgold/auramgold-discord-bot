@@ -28,9 +28,9 @@ public class Punish extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
-		return "`maid!" + what[0] + "` has no extra parameters.";
+		return "`maid!" + what.get(0) + "` has no extra parameters.";
 	}
 
 	@Override

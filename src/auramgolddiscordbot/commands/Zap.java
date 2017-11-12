@@ -224,7 +224,7 @@ public class Zap extends BotCommand implements Documentable
 	}
 	
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
 		return "```maid!zap (morph)... (usermention)\n"
 				+ "	Zaps (usermention) with (morph)\n"

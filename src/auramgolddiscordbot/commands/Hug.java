@@ -29,9 +29,9 @@ public class Hug extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
-		return "```maid!" + what[0] + " (usermention)OR(text)(...)\n"
+		return "```maid!" + what.get(0) + " (usermention)OR(text)(...)\n"
 				+ "	Hugs (usermention), which is optional and can be\n"
 				+ "	Either an @mention or their user ID number\n"
 				+ "	If plain text is used, applies hug to plain text\n"

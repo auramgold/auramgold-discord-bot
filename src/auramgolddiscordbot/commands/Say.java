@@ -26,7 +26,7 @@ public class Say extends BotCommand implements Documentable
 	}
 	
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
 		return "```maid!say [word](...)\n"
 				+ "	Try it out with anything you can think of!\n"

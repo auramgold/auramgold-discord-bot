@@ -27,7 +27,7 @@ public class Be extends BotCommand implements Documentable
 	}
 	
 	@Override
-	public String getDocumentation(String[] what) 
+	public String getDocumentation(ArrayList<String> what) 
 	{
 		return "```maid!be [something](...))\n"
 				+ "	Makes the maid be [something]\n"

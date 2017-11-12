@@ -32,7 +32,7 @@ public class Set extends BotCommand implements Documentable
 	}
 	
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
 		String validPronouns = "";
 		for(PronounRef pro: PersonalReference.gender)

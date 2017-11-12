@@ -27,7 +27,7 @@ public class Fetch extends BotCommand implements Documentable
 	}
 	
 	@Override
-	public String getDocumentation(String[] what) 
+	public String getDocumentation(ArrayList<String> what) 
 	{
 		return "```maid!fetch [item](...))\n"
 				+ "	Brings [item] to you\n"

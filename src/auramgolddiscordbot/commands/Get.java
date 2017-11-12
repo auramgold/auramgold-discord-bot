@@ -32,7 +32,7 @@ public class Get extends BotCommand implements Documentable
 	}
 
 	@Override
-	public String getDocumentation(String[] what)
+	public String getDocumentation(ArrayList<String> what)
 	{
 		return "```maid!get [settable] [usermention]\n"
 				+ "	Where [settable] is gender/sex/pronouns/pronoun/name/form/morph/appearance\n"
