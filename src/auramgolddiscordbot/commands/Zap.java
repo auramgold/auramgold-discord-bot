@@ -110,7 +110,8 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER)
+					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER),
+					new Morph("busty", OTHER)
 				)
 			)
 		);
@@ -126,7 +127,8 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("mouse", ANIMAL), new Morph("raccoon", ANIMAL),
 					new Morph("jeremy-like", ANIMAL), new Morph("fox", ANIMAL),
 					new Morph("squirrel", ANIMAL), new Morph("bunny", ANIMAL),
-					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL)
+					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL),
+					new Morph("golden retriever", ANIMAL)
 				)
 			)
 		);
