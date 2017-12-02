@@ -201,24 +201,25 @@ public class Zap extends BotCommand implements Documentable
 	 */
 	protected String generateMorph()
 	{
+		String ret = "";
 		ArrayList<MorphType> types = new ArrayList<>(Arrays.asList(MorphType.class.getEnumConstants()));
 		int typesLen = types.size();
 		ArrayList<Morph> others = transformations.get(OTHER);
 		int othersLen = others.size();
 		Random currand = ThreadLocalRandom.current();
-		int count = 1+(currand.nextInt(1+currand.nextInt(maxpo)) % maxpo);
+		// this produces an integer in the range 1 to maxpo
+		// with greater probability closer to 1
+		int count = 1 + (currand.nextInt(1 + currand.nextInt(maxpo)) % maxpo);
+		// this means that at maxpo, the least likely number to be picked
+		// only then will it reset the form
+		// this is to prevent form resets from happening ALL THE TIME
 		if(count == maxpo)
 		{
-			count = 0;
+			return ret;
 		}
 		ArrayList<Morph> apps = new ArrayList<>();
-		if(count == 0)
-		{
-			return "";
-		}
 		for(int i = 0; i < count; i++)
 		{
-			boolean cont;
 			Morph addition;
 
 			int mindex = currand.nextInt(typesLen);
@@ -245,7 +246,6 @@ public class Zap extends BotCommand implements Documentable
 			typesLen = types.size();
 			apps.add(addition);
 		}
-		String ret = "";
 		Collections.sort(apps);
 		ret = apps.stream().map((app) -> app.name + " ").reduce(ret, String::concat);
 		return ret;
@@ -275,7 +275,6 @@ public class Zap extends BotCommand implements Documentable
 	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
 		boolean notSelfTarget = false;
-		GuildController ctrlr = event.getGuild().getController();
 		String person;
 		if(params.isEmpty())
 		{
@@ -323,8 +322,6 @@ public class Zap extends BotCommand implements Documentable
 			
 		if(!otherId.equals("342757470046781450"))
 		{
-			RefUser targ = new RefUser(Long.parseLong(otherId),(JDAImpl)AuramgoldDiscordBot.api);
-			Member targM = event.getGuild().getMember(targ);
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
 			String form;
@@ -343,14 +340,6 @@ public class Zap extends BotCommand implements Documentable
 			RefList.getReference(otherId).morphState = form;
 			if(form.equals(""))
 			{
-//				try
-//				{
-//					ctrlr.setNickname(targM,"").completeAfter(250, TimeUnit.MILLISECONDS);
-//				}
-//				catch(Exception ex)
-//				{
-//					System.out.println("    Couldn't nickname the user.");
-//				}
 				return "*zaps " + "<@!" + otherId + ">" + " back to "
 						+ RefList.getReference(otherId).getPronouns().possAdj
 						+ " default form.*";
@@ -362,21 +351,6 @@ public class Zap extends BotCommand implements Documentable
 			}
 			String article = AuramgoldDiscordBot.getArticle(form);
 			RefList.updateFile();
-//			String nick = AuramgoldDiscordBot.capitalizeFirstLetter(form)
-//							+ (!targ.getAuramName().equals(targ.getPronouns().subject)
-//								?targ.getAuramName()
-//								:targM.getEffectiveName());
-//			System.out.println("    Attempted to name "
-//								+ targM.getEffectiveName() + " \""
-//								+ nick + "\"");
-//			try
-//			{
-//				ctrlr.setNickname(targM,nick).queueAfter(250, TimeUnit.MILLISECONDS);
-//			}
-//			catch(Exception ex)
-//			{
-//				System.out.println("    Couldn't nickname the user.");
-//			}
 			return "*zaps " + "<@!" + otherId + ">" + " with " + article + " "
 					+ form + "morph.*";
 		}
