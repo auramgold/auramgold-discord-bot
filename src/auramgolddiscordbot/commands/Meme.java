@@ -90,6 +90,22 @@ public class Meme extends BotCommand implements Documentable
 			case "unlimited":
 			case "unlimited power":
 				return "https://www.youtube.com/watch?v=e_DqV1xdf-Y";
+			case "older":
+			case "older meme":
+			case "it's an older meme":
+			case "its an older meme":
+				return "http://i0.kym-cdn.com/entries/icons/original/000/017/492/bUNXwFD.jpg";
+			case "both":
+			case "why not both":
+			case "both?":
+			case "why not both?":
+				return "https://i.imgur.com/c7NJRa2.gif";
+			case "you're welcome":
+			case "youre welcome":
+			case "welcome":
+				return "https://youtu.be/79DijItQXMM?t=38s";
+			case "demiguy":
+				return "https://youtu.be/79DijItQXMM?t=50s";
 			case "":
 				return "Try the name of any prequel meme, that's a good trick.";
 			default:

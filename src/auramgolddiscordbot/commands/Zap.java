@@ -15,10 +15,12 @@ import static auramgolddiscordbot.commands.MorphType.OTHER;
 import static auramgolddiscordbot.commands.MorphType.SEX;
 import static auramgolddiscordbot.commands.MorphType.SIZE;
 import static auramgolddiscordbot.commands.MorphType.WEIGHT;
+import static auramgolddiscordbot.commands.MorphType.HEIGHT;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -32,11 +34,12 @@ enum MorphType
 {
 	SIZE (0),
 	AGE (1),
-	WEIGHT (2),
-	OTHER (3),
-	HAIR (4),
-	SEX (5),
-	ANIMAL (6);
+	HEIGHT (2),
+	WEIGHT (3),
+	OTHER (4),
+	HAIR (5),
+	SEX (6),
+	ANIMAL (7);
 	
 	public final int order;
 	
@@ -78,11 +81,12 @@ class Morph implements Comparable<Morph>
  */
 public class Zap extends BotCommand implements Documentable
 {
+	public int maxpo;
 
 	/**
 	 * The HashMap of morphs
 	 */
-	public HashMap<MorphType, ArrayList<Morph>> transformations;
+	private final HashMap<MorphType, ArrayList<Morph>> transformations;
 
 	/**
 	 * Constructs the command with given aliases.
@@ -111,7 +115,8 @@ public class Zap extends BotCommand implements Documentable
 				Arrays.asList
 				(
 					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER),
-					new Morph("busty", OTHER)
+					new Morph("busty", OTHER), new Morph("ditzy", OTHER),
+					new Morph("cheerleader", OTHER)
 				)
 			)
 		);
@@ -160,6 +165,17 @@ public class Zap extends BotCommand implements Documentable
 		);
 		transformations.put
 		(
+			HEIGHT,
+			new ArrayList<>
+			(
+				Arrays.asList
+				(
+					new Morph("tall", SIZE), new Morph("short", SIZE)
+				)
+			)
+		);
+		transformations.put
+		(
 			WEIGHT, 
 			new ArrayList<>
 			(
@@ -176,6 +192,7 @@ public class Zap extends BotCommand implements Documentable
 			a.add(new Morph("FV" + i, SEX));
 		}
 		transformations.put(SEX, a);
+		maxpo = 7 + transformations.get(OTHER).size() + 1;
 	}
 	
 	/**
@@ -184,9 +201,13 @@ public class Zap extends BotCommand implements Documentable
 	 */
 	protected String generateMorph()
 	{
+		ArrayList<MorphType> types = new ArrayList<>(Arrays.asList(MorphType.class.getEnumConstants()));
+		int typesLen = types.size();
+		ArrayList<Morph> others = transformations.get(OTHER);
+		int othersLen = others.size();
 		Random currand = ThreadLocalRandom.current();
-		int count = 1+(currand.nextInt(1+currand.nextInt(7)) % 7);
-		if(count == 7)
+		int count = 1+(currand.nextInt(1+currand.nextInt(maxpo)) % maxpo);
+		if(count == maxpo)
 		{
 			count = 0;
 		}
@@ -199,24 +220,29 @@ public class Zap extends BotCommand implements Documentable
 		{
 			boolean cont;
 			Morph addition;
-			do
+
+			int mindex = currand.nextInt(typesLen);
+			MorphType m = types.get(mindex);
+			if(m != OTHER)
 			{
-				int mindex = currand.nextInt(MorphType.values().length);
-				MorphType m = MorphType.values()[mindex];
 				int tracount = transformations.get(m).size();
 				addition = transformations.get(m).get(currand.nextInt(tracount));
-				boolean toAdd = true;
-				for(Morph app: apps)
-				{
-					if(app.checkSame(addition))
-					{
-						toAdd = false;
-						break;
-					}
-				}
-				cont = toAdd;
+				types.remove(m);
 			}
-			while(!cont);
+			else
+			{
+				if(othersLen != 1)
+				{
+					addition = others.get(currand.nextInt(othersLen));
+				}
+				else
+				{
+					addition = others.get(0);
+					types.remove(OTHER);
+				}
+				othersLen--;
+			}
+			typesLen = types.size();
 			apps.add(addition);
 		}
 		String ret = "";
