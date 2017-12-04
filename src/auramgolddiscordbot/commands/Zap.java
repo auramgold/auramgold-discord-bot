@@ -192,7 +192,7 @@ public class Zap extends BotCommand implements Documentable
 			a.add(new Morph("FV" + i, SEX));
 		}
 		transformations.put(SEX, a);
-		maxpo = 7 + transformations.get(OTHER).size() + 1;
+		maxpo = transformations.size() + transformations.get(OTHER).size();
 	}
 	
 	/**
@@ -234,7 +234,9 @@ public class Zap extends BotCommand implements Documentable
 			{
 				if(othersLen != 1)
 				{
-					addition = others.get(currand.nextInt(othersLen));
+					int index = currand.nextInt(othersLen);
+					addition = others.get(index);
+					others.remove(index);
 				}
 				else
 				{
@@ -245,6 +247,7 @@ public class Zap extends BotCommand implements Documentable
 			}
 			typesLen = types.size();
 			apps.add(addition);
+			if(typesLen == 0) break;
 		}
 		Collections.sort(apps);
 		ret = apps.stream().map((app) -> app.name + " ").reduce(ret, String::concat);
