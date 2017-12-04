@@ -189,7 +189,9 @@ public class Zap extends BotCommand implements Documentable
 		for(int i = 1; i <= 5; i++)
 		{
 			a.add(new Morph("MV" + i, SEX));
+			a.add(new Morph("MV-F" + i, SEX));
 			a.add(new Morph("FV" + i, SEX));
+			a.add(new Morph("FV-M" + i, SEX));
 		}
 		transformations.put(SEX, a);
 		maxpo = transformations.size() + transformations.get(OTHER).size();
@@ -221,7 +223,7 @@ public class Zap extends BotCommand implements Documentable
 		String ret = "";
 		ArrayList<MorphType> types = new ArrayList<>(Arrays.asList(MorphType.class.getEnumConstants()));
 		int typesLen = types.size();
-		ArrayList<Morph> others = transformations.get(OTHER);
+		ArrayList<Morph> others = (ArrayList<Morph>)transformations.get(OTHER).clone();
 		int othersLen = others.size();
 		Random currand = ThreadLocalRandom.current();
 		
@@ -229,7 +231,6 @@ public class Zap extends BotCommand implements Documentable
 		for(int i = 0; i < count; i++)
 		{
 			Morph addition;
-
 			int mindex = currand.nextInt(typesLen);
 			MorphType m = types.get(mindex);
 			if(m != OTHER)
@@ -266,13 +267,15 @@ public class Zap extends BotCommand implements Documentable
 	public String getDocumentation(ArrayList<String> what)
 	{
 		return "```maid!zap (morph)... (usermention)\n"
+				+ "OR maid!zap (usermention) (morph)...\n"
 				+ "	Zaps (usermention) with (morph)\n"
 				+ "\n"
 				+ "		(usermention) is either an @mention or their user ID number\n"
 				+ "		If not put, defaults to using executing user.\n"
 				+ "\n"
 				+ "		(morph) is a string of words separated by spaces\n"
-				+ "		If not specified, defaults to random morph"
+				+ "		If not specified, defaults to random morph\n"
+				+ "     If numeric, tries to generate a form morph with that many components."
 				+ "```";
 	}
 
