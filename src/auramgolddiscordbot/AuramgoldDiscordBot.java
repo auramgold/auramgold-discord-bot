@@ -48,6 +48,7 @@ public class AuramgoldDiscordBot
 	 * The regex pattern to extract user IDs.
 	 */
 	public static Pattern userExtract = Pattern.compile("^(?:\\<\\@)?\\!?(\\d+)\\>?$");
+	public static Pattern mentionExtract = Pattern.compile("^\\<\\@\\!?(\\d+)\\>$");
 	
 	/**
 	 * Where the map file is located.

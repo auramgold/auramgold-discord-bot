@@ -133,7 +133,7 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("jeremy-like", ANIMAL), new Morph("fox", ANIMAL),
 					new Morph("squirrel", ANIMAL), new Morph("bunny", ANIMAL),
 					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL),
-					new Morph("golden retriever", ANIMAL)
+					new Morph("golden retriever", ANIMAL), new Morph("saint bernard", ANIMAL)
 				)
 			)
 		);
@@ -195,28 +195,36 @@ public class Zap extends BotCommand implements Documentable
 		maxpo = transformations.size() + transformations.get(OTHER).size();
 	}
 	
-	/**
-	 * Generates a random morph
-	 * @return A string of a random morph
-	 */
 	protected String generateMorph()
 	{
-		String ret = "";
-		ArrayList<MorphType> types = new ArrayList<>(Arrays.asList(MorphType.class.getEnumConstants()));
-		int typesLen = types.size();
-		ArrayList<Morph> others = transformations.get(OTHER);
-		int othersLen = others.size();
-		Random currand = ThreadLocalRandom.current();
 		// this produces an integer in the range 1 to maxpo
 		// with greater probability closer to 1
+		Random currand = ThreadLocalRandom.current();
 		int count = 1 + (currand.nextInt(1 + currand.nextInt(maxpo)) % maxpo);
 		// this means that at maxpo, the least likely number to be picked
 		// only then will it reset the form
 		// this is to prevent form resets from happening ALL THE TIME
 		if(count == maxpo)
 		{
-			return ret;
+			return "";
 		}
+		return generateMorph(count);
+	}
+	
+	/**
+	 * Generates a random morph
+	 * @return A string of a random morph
+	 */
+	protected String generateMorph(int count)
+	{
+		if(count <= 0 || count >= maxpo) return null;
+		String ret = "";
+		ArrayList<MorphType> types = new ArrayList<>(Arrays.asList(MorphType.class.getEnumConstants()));
+		int typesLen = types.size();
+		ArrayList<Morph> others = transformations.get(OTHER);
+		int othersLen = others.size();
+		Random currand = ThreadLocalRandom.current();
+		
 		ArrayList<Morph> apps = new ArrayList<>();
 		for(int i = 0; i < count; i++)
 		{
@@ -281,16 +289,16 @@ public class Zap extends BotCommand implements Documentable
 		String person;
 		if(params.isEmpty())
 		{
-			person = who.getId();
+			person = "<@"+who.getId()+">";
 		}
 		else if(params.get(params.size() - 1).equals("me"))
 		{
-			person = who.getId();
+			person = "<@"+who.getId()+">";
 			params.remove(params.size() - 1);
 		}
 		else if(params.get(0).equals("me"))
 		{
-			person = who.getId();
+			person = "<@"+who.getId()+">";
 			params.remove(0);
 		}
 		else
@@ -299,7 +307,7 @@ public class Zap extends BotCommand implements Documentable
 			notSelfTarget = true;
 		}
 
-		Matcher mat = AuramgoldDiscordBot.userExtract.matcher(person);
+		Matcher mat = AuramgoldDiscordBot.mentionExtract.matcher(person);
 		String otherId;
 		if(mat.matches())
 		{
@@ -311,7 +319,7 @@ public class Zap extends BotCommand implements Documentable
 		}
 		else
 		{
-			Matcher mat2 = AuramgoldDiscordBot.userExtract.matcher(params.get(0));
+			Matcher mat2 = AuramgoldDiscordBot.mentionExtract.matcher(params.get(0));
 			if(mat2.matches() && notSelfTarget)
 			{
 				otherId = mat2.group(1);
@@ -328,14 +336,35 @@ public class Zap extends BotCommand implements Documentable
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
 			String form;
+			int len = 0;
+			if(morph.size() == 1)
+			{
+				try
+				{
+					len = Integer.parseInt(morph.get(0));
+				}
+				catch(NumberFormatException ex){}
+			}
+			
 			if(morph.isEmpty())
 			{
 				form = generateMorph();
+			}
+			else if(len != 0)
+			{
+				form = generateMorph(len);
+				if(form == null)
+				{
+					return "I'm sorry, " + who.getHonorific() + " but I don't"
+							+ " have enough options to generate something that "
+							+ "long.";
+				}
 			}
 			else
 			{
 				form = String.join(" ",morph);
 			}
+			
 			if(form.equals("normal") || form.equals("default") || form.equals(""))
 			{
 				form = "";
@@ -347,7 +376,7 @@ public class Zap extends BotCommand implements Documentable
 						+ RefList.getReference(otherId).getPronouns().possAdj
 						+ " default form.*";
 			}
-			if(!morph.isEmpty())
+			if(!(morph.isEmpty() || len != 0))
 			{
 				form += " ";
 				RefList.getReference(otherId).morphState = form;
