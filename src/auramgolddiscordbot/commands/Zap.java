@@ -103,7 +103,9 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("old", AGE), new Morph("young", AGE)
+					new Morph("middle-aged", AGE), new Morph("elderly", AGE),
+					new Morph("baby", AGE), new Morph("young adult", AGE),
+					new Morph("teenage", AGE), new Morph("childlike", AGE)
 				)
 			)
 		);
@@ -159,7 +161,9 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("half-sized", SIZE), new Morph("double-sized", SIZE)
+					new Morph("quarter-sized", SIZE), new Morph("one-third-sized", SIZE),
+					new Morph("half-sized", SIZE), new Morph("double-sized", SIZE), 
+					new Morph("triple-sized", SIZE), new Morph("quadruple-sized", SIZE)
 				)
 			)
 		);
@@ -170,7 +174,8 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("tall", SIZE), new Morph("short", SIZE)
+					new Morph("tall", SIZE), new Morph("very tall", SIZE), 
+					new Morph("short", SIZE), new Morph("very short", SIZE)
 				)
 			)
 		);
@@ -181,7 +186,8 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("heavy", WEIGHT), new Morph("thin", WEIGHT)
+					new Morph("heavy", WEIGHT), new Morph("very heavy", WEIGHT),
+					new Morph("thin", WEIGHT), new Morph("very thin", WEIGHT)
 				)
 			)
 		);
@@ -189,9 +195,7 @@ public class Zap extends BotCommand implements Documentable
 		for(int i = 1; i <= 5; i++)
 		{
 			a.add(new Morph("MV" + i, SEX));
-			a.add(new Morph("MV-F" + i, SEX));
 			a.add(new Morph("FV" + i, SEX));
-			a.add(new Morph("FV-M" + i, SEX));
 		}
 		transformations.put(SEX, a);
 		maxpo = transformations.size() + transformations.get(OTHER).size();
