@@ -30,7 +30,7 @@ import net.dv8tion.jda.core.entities.impl.JDAImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 
-enum MorphType
+enum MorphType implements Comparable<MorphType>
 {
 	SIZE (0),
 	AGE (1),
@@ -62,8 +62,12 @@ class Morph implements Comparable<Morph>
 		this.name = name;
 	}
 	
-	public boolean checkSame(Morph o)
+	public boolean equals(Morph o)
 	{
+		if (o == null) return false;
+		
+		if (o == this) return true;
+		
 		return (o.type.equals(type) && !o.type.equals(OTHER))
 				|| o.name.equals(name);
 	}
