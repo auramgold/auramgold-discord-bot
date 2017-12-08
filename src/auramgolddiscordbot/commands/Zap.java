@@ -201,6 +201,10 @@ public class Zap extends BotCommand implements Documentable
 		maxpo = transformations.size() + transformations.get(OTHER).size();
 	}
 	
+	/**
+	 * Generates a random morph with a random length
+	 * @return A string of a random morph
+	 */
 	protected String generateMorph()
 	{
 		// this produces an integer in the range 1 to maxpo
@@ -218,7 +222,11 @@ public class Zap extends BotCommand implements Documentable
 	}
 	
 	/**
-	 * Generates a random morph
+	 * Generates a random morph of a given length.
+	 * If the <code>count</code> is invalid, returns null.
+	 * Returns empty string to signify morph reset.
+	 * 
+	 * @param count the length of the form
 	 * @return A string of a random morph
 	 */
 	protected String generateMorph(int count)
@@ -279,7 +287,7 @@ public class Zap extends BotCommand implements Documentable
 				+ "\n"
 				+ "		(morph) is a string of words separated by spaces\n"
 				+ "		If not specified, defaults to random morph\n"
-				+ "     If numeric, tries to generate a form morph with that many components."
+				+ "		If numeric, tries to generate a form morph with that many components."
 				+ "```";
 	}
 
