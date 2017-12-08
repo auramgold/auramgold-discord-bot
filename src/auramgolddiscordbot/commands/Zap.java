@@ -292,6 +292,7 @@ public class Zap extends BotCommand implements Documentable
 				+ "		(morph) is a string of words separated by spaces\n"
 				+ "		If not specified, defaults to random morph\n"
 				+ "		If numeric, tries to generate a form morph with that many components."
+				+ "		If 'default' or 'normal', resets form"
 				+ "```";
 	}
 
