@@ -40,8 +40,10 @@ public class CommandRunner
 		{
 			case "ping":
 				return "Pong!";
+			case "pong":
+				return "https://youtu.be/xeEFMhdnR6c";
 			case "breathe":
-				return "https://www.youtube.com/watch?v=C1STpYAFxJk&t=2s";
+				return "https://www.youtu.be/C1STpYAFxJk&t=2s";
 			case "clean":
 				if(args.isEmpty())
 				{
