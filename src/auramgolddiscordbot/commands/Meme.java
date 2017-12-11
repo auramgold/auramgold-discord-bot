@@ -106,6 +106,11 @@ public class Meme extends BotCommand implements Documentable
 				return "https://youtu.be/79DijItQXMM?t=38s";
 			case "demiguy":
 				return "https://youtu.be/79DijItQXMM?t=50s";
+			case "why":
+			case "but why":
+			case "why?":
+			case "but why?":
+				return "https://youtu.be/PEZWYXPvmS8";
 			case "":
 				return "Try the name of any prequel meme, that's a good trick.";
 			default:
