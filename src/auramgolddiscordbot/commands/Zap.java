@@ -371,7 +371,7 @@ public class Zap extends BotCommand implements Documentable
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
 			Iterator<String> morphIt = morph.iterator();
-			MorphSex morphSex = MorphSex.NONE;
+			MorphSex morphSex = RefList.getReference(otherId).getOverrideSex();
 			while(morphIt.hasNext())
 			{
 				String currParam = morphIt.next();
@@ -400,6 +400,10 @@ public class Zap extends BotCommand implements Documentable
 									case "lady":
 									case "woman":
 										morphSex = MorphSex.FEMALE;
+										break;
+									case "x":
+									case "reset":
+										morphSex = MorphSex.NONE;
 										break;
 									default:
 										break;

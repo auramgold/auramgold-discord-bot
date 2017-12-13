@@ -53,7 +53,11 @@ public class Set extends BotCommand implements Documentable
 				+ "		Defaults to they/them when [value] is not recognized\n"
 				+ "================\n"
 				+ "	maid!set name [name](...)\n"
-				+ "		Where [name] preserves spaces"
+				+ "		Where [name] preserves spaces\n"
+				+ "================\n"
+				+ "	maid!set zapsex/defaultzap [value]\n"
+				+ "		Where [value] is male or female\n"
+				+ "		Affects the default override sex given from maid!zap"
 				+ "```";
 	}
 
@@ -125,6 +129,35 @@ public class Set extends BotCommand implements Documentable
 				RefList.referenceList.put(person.getId(), pers);
 				RefList.updateFile();
 				return "Set " + poss + " name to \"" + pers.getName() + "\".";
+			case "defaultzap":
+			case "zapsex":
+				MorphSex morphSex;
+				switch(params.get(1))
+				{
+					case "m":
+					case "male":
+					case "boy":
+					case "man":
+					case "1":
+						morphSex = MorphSex.MALE;
+						break;
+					case "f":
+					case "female":
+					case "girl":
+					case "lady":
+					case "woman":
+					case "2":
+						morphSex = MorphSex.FEMALE;
+						break;
+					default:
+						morphSex = MorphSex.NONE;
+						break;
+				}
+				pers.setOverrideSex(morphSex);
+				RefList.referenceList.put(person.getId(), pers);
+				RefList.updateFile();
+				return "Set " + poss + " default morph zap sex to "
+						+ morphSex.name() + ".";
 			default:
 				return "Error: " + params.get(0) + " is not a settable value.";
 		}

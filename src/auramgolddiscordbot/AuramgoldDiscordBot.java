@@ -5,6 +5,7 @@
  */
 package auramgolddiscordbot;
 
+import auramgolddiscordbot.commands.MorphSex;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -81,7 +82,8 @@ public class AuramgoldDiscordBot
 							Integer.parseInt(split[1]),
 							split[2],
 							Integer.parseInt(split.length>3?split[3]:"0"),
-							split[4]
+							split[4],
+							MorphSex.values()[(Integer.parseInt(split[5]))]
 						)
 				);
 			}

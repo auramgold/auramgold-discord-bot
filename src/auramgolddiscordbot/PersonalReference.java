@@ -5,6 +5,8 @@
  */
 package auramgolddiscordbot;
 
+import auramgolddiscordbot.commands.MorphSex;
+
 /**
  *
  * @author Lauren Smith
@@ -36,6 +38,8 @@ public class PersonalReference
 	 * What morph the user is currently in
 	 */
 	public String morphState;
+	
+	public MorphSex defaultOverride;
 
 	/**
 	 * The net amount the bot is "spoiled" by the given user.<br/>
@@ -53,7 +57,7 @@ public class PersonalReference
 	 */
 	public PersonalReference()
 	{
-		this(0, "", 0, "");
+		this(0, "", 0, "", MorphSex.NONE);
 	}
 	
 	/**
@@ -63,12 +67,13 @@ public class PersonalReference
 	 * @param spoil Their net spoilage
 	 * @param morph The morph state they are currently in
 	 */
-	public PersonalReference(int ind, String nam, int spoil, String morph)
+	public PersonalReference(int ind, String nam, int spoil, String morph, MorphSex over)
 	{
 		pronounIndex = ind;
 		name = nam;
 		netSpoil = spoil;
 		morphState = morph;
+		defaultOverride = over;
 	}
 	
 	/**
@@ -139,6 +144,16 @@ public class PersonalReference
 		{
 			return getPronouns().possAdj + " default form";
 		}
+	}
+	
+	public MorphSex getOverrideSex()
+	{
+		return this.defaultOverride;
+	}
+	
+	public void setOverrideSex(MorphSex what)
+	{
+		this.defaultOverride = what;
 	}
 	
 	/**
