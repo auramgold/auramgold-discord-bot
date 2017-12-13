@@ -20,15 +20,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.impl.JDAImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.managers.GuildController;
+
+
 
 enum MorphType implements Comparable<MorphType>
 {
@@ -54,12 +52,21 @@ class Morph implements Comparable<Morph>
 	
 	
 	public final MorphType type;
+	public final MorphSex morphSex;
 	public final String name;
 	
 	public Morph(String name, MorphType type)
 	{
 		this.type = type;
 		this.name = name;
+		this.morphSex = MorphSex.NONE;
+	}
+	
+	public Morph(String name, MorphType type, MorphSex morphSex)
+	{
+		this.type = type;
+		this.name = name;
+		this.morphSex = morphSex;
 	}
 	
 	public boolean equals(Morph o)
@@ -198,8 +205,8 @@ public class Zap extends BotCommand implements Documentable
 		ArrayList<Morph> a = new ArrayList<>();
 		for(int i = 1; i <= 5; i++)
 		{
-			a.add(new Morph("MV" + i, SEX));
-			a.add(new Morph("FV" + i, SEX));
+			a.add(new Morph("MV" + i, SEX, MorphSex.MALE));
+			a.add(new Morph("FV" + i, SEX, MorphSex.FEMALE));
 		}
 		transformations.put(SEX, a);
 		maxpo = transformations.size() + transformations.get(OTHER).size();
@@ -209,7 +216,7 @@ public class Zap extends BotCommand implements Documentable
 	 * Generates a random morph with a random length
 	 * @return A string of a random morph
 	 */
-	protected String generateMorph()
+	protected String generateMorph(MorphSex what)
 	{
 		// this produces an integer in the range 1 to maxpo
 		// with greater probability closer to 1
@@ -222,7 +229,7 @@ public class Zap extends BotCommand implements Documentable
 		{
 			return "";
 		}
-		return generateMorph(count);
+		return generateMorph(count, what);
 	}
 	
 	/**
@@ -233,7 +240,7 @@ public class Zap extends BotCommand implements Documentable
 	 * @param count the length of the form
 	 * @return A string of a random morph
 	 */
-	protected String generateMorph(int count)
+	protected String generateMorph(int count, MorphSex what)
 	{
 		if(count <= 0 || count >= maxpo) return null;
 		String ret = "";
@@ -251,8 +258,15 @@ public class Zap extends BotCommand implements Documentable
 			MorphType m = types.get(mindex);
 			if(m != OTHER)
 			{
-				int tracount = transformations.get(m).size();
-				addition = transformations.get(m).get(currand.nextInt(tracount));
+				ArrayList<Morph> currentType = (ArrayList<Morph>)transformations.get(m).clone();
+				do
+				{
+					int tracount = currentType.size();
+					int curr = currand.nextInt(tracount);
+					addition = currentType.get(curr);
+				}
+				while(!what.checkNotOpposite(addition.morphSex));
+				
 				types.remove(m);
 			}
 			else
@@ -292,6 +306,7 @@ public class Zap extends BotCommand implements Documentable
 				+ "		(morph) is a string of words separated by spaces\n"
 				+ "		If not specified, defaults to random morph\n"
 				+ "		If numeric, tries to generate a form morph with that many components.\n"
+				+ "		If argument -sex:(M/F) is included, makes sure a sex morph that is generated is that one.\n"
 				+ "		If 'default' or 'normal', resets form"
 				+ "```";
 	}
@@ -355,6 +370,47 @@ public class Zap extends BotCommand implements Documentable
 		{
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
+			Iterator<String> morphIt = morph.iterator();
+			MorphSex morphSex = MorphSex.NONE;
+			while(morphIt.hasNext())
+			{
+				String currParam = morphIt.next();
+				if(currParam.startsWith("-"))
+				{
+					morphIt.remove();
+					String argument = currParam.substring(1);
+					String[] argParts = argument.split(":");
+					if(argParts.length == 2)
+					{
+						switch(argParts[0].toLowerCase())
+						{
+							case "gender":
+							case "sex":
+								switch(argParts[1].toLowerCase())
+								{
+									case "m":
+									case "male":
+									case "boy":
+									case "man":
+										morphSex = MorphSex.MALE;
+										break;
+									case "f":
+									case "female":
+									case "girl":
+									case "lady":
+									case "woman":
+										morphSex = MorphSex.FEMALE;
+										break;
+									default:
+										break;
+								}
+								break;
+							default:
+								break;
+						}
+					}
+				}
+			}
 			String form;
 			int len = 0;
 			if(morph.size() == 1)
@@ -368,11 +424,11 @@ public class Zap extends BotCommand implements Documentable
 			
 			if(morph.isEmpty())
 			{
-				form = generateMorph();
+				form = generateMorph(morphSex);
 			}
 			else if(len != 0)
 			{
-				form = generateMorph(len);
+				form = generateMorph(len, morphSex);
 				if(form == null)
 				{
 					return "I'm sorry, " + who.getHonorific() + " but I don't"
