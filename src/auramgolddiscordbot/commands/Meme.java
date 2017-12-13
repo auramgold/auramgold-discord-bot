@@ -111,6 +111,12 @@ public class Meme extends BotCommand implements Documentable
 			case "why?":
 			case "but why?":
 				return "https://youtu.be/PEZWYXPvmS8";
+			case "i'm out":
+			case "im out":
+			case "fuck this shit":
+			case "fuck this shit i'm out":
+			case "fuck this shit im out":
+				return "https://youtu.be/5FjWe31S_0g";
 			case "":
 				return "Try the name of any prequel meme, that's a good trick.";
 			default:
