@@ -74,14 +74,14 @@ public class Meme extends BotCommand implements Documentable
 			case "noo":
 			case "nooo":
 			case "noooo":
-				return "https://giphy.com/gifs/reaction-animated-star-wars-xHwqspaBmfUMU";
+				return "https://youtu.be/WWaLxFIVX1s";
 			case "working":
 			case "it's working":
 			case "its working":
-				return "https://media.giphy.com/media/9K2nFglCAQClO/200.gif";
+				return "https://youtu.be/AXwGVXD7qEQ";
 			case "fine":
 			case "fine addition":
-				return "http://memes.ucoz.com/_nw/19/03537863.jpg";
+				return "https://youtu.be/dfeUyUu3fjQ";
 			case "do it":
 			case "dewit":
 			case "dew it":
@@ -99,7 +99,7 @@ public class Meme extends BotCommand implements Documentable
 			case "why not both":
 			case "both?":
 			case "why not both?":
-				return "https://i.imgur.com/c7NJRa2.gif";
+				return "https://youtu.be/vgk-lA12FBk";
 			case "you're welcome":
 			case "youre welcome":
 			case "welcome":
