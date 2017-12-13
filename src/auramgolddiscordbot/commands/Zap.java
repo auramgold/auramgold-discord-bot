@@ -185,8 +185,8 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("tall", SIZE), new Morph("very tall", SIZE), 
-					new Morph("short", SIZE), new Morph("very short", SIZE)
+					new Morph("tall", HEIGHT), new Morph("very tall", HEIGHT), 
+					new Morph("short", HEIGHT), new Morph("very short", HEIGHT)
 				)
 			)
 		);
