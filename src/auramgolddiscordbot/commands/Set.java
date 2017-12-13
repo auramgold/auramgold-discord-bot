@@ -157,7 +157,7 @@ public class Set extends BotCommand implements Documentable
 				RefList.referenceList.put(person.getId(), pers);
 				RefList.updateFile();
 				return "Set " + poss + " default morph zap sex to "
-						+ morphSex.name() + ".";
+						+ morphSex.name().toLowerCase() + ".";
 			default:
 				return "Error: " + params.get(0) + " is not a settable value.";
 		}
