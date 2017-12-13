@@ -147,6 +147,7 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("jeremy-like", ANIMAL), new Morph("fox", ANIMAL),
 					new Morph("squirrel", ANIMAL), new Morph("bunny", ANIMAL),
 					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL),
+					new Morph("eevee", ANIMAL), new Morph("vulpix", ANIMAL),
 					new Morph("golden retriever", ANIMAL), new Morph("saint bernard", ANIMAL)
 				)
 			)
