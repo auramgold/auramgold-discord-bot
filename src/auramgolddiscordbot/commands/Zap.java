@@ -10,6 +10,7 @@ import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import static auramgolddiscordbot.commands.MorphType.AGE;
 import static auramgolddiscordbot.commands.MorphType.ANIMAL;
+import static auramgolddiscordbot.commands.MorphType.CAREER;
 import static auramgolddiscordbot.commands.MorphType.HAIR;
 import static auramgolddiscordbot.commands.MorphType.OTHER;
 import static auramgolddiscordbot.commands.MorphType.SEX;
@@ -37,7 +38,8 @@ enum MorphType implements Comparable<MorphType>
 	OTHER (4),
 	HAIR (5),
 	SEX (6),
-	ANIMAL (7);
+	ANIMAL (7),
+	CAREER (8);
 	
 	public final int order;
 	
@@ -128,8 +130,7 @@ public class Zap extends BotCommand implements Documentable
 				Arrays.asList
 				(
 					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER),
-					new Morph("busty", OTHER), new Morph("ditzy", OTHER),
-					new Morph("cheerleader", OTHER)
+					new Morph("busty", OTHER), new Morph("ditzy", OTHER)
 				)
 			)
 		);
@@ -199,6 +200,18 @@ public class Zap extends BotCommand implements Documentable
 				(
 					new Morph("heavy", WEIGHT), new Morph("very heavy", WEIGHT),
 					new Morph("thin", WEIGHT), new Morph("very thin", WEIGHT)
+				)
+			)
+		);
+		transformations.put
+		(
+			CAREER,
+			new ArrayList<>
+			(
+				Arrays.asList
+				(
+					new Morph("cheerleader", CAREER), new Morph("maid", CAREER),
+					new Morph("baseball player", CAREER)
 				)
 			)
 		);
