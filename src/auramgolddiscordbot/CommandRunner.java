@@ -43,7 +43,7 @@ public class CommandRunner
 			case "pong":
 				return "https://youtu.be/xeEFMhdnR6c";
 			case "breathe":
-				return "https://www.youtu.be/C1STpYAFxJk&t=2s";
+				return "https://youtu.be/C1STpYAFxJk?t=1s";
 			case "clean":
 				if(args.isEmpty())
 				{
