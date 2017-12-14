@@ -130,7 +130,8 @@ public class Zap extends BotCommand implements Documentable
 				Arrays.asList
 				(
 					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER),
-					new Morph("busty", OTHER), new Morph("ditzy", OTHER)
+					new Morph("busty", OTHER), new Morph("ditzy", OTHER),
+					new Morph("collared", OTHER)
 				)
 			)
 		);
@@ -148,7 +149,8 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("squirrel", ANIMAL), new Morph("bunny", ANIMAL),
 					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL),
 					new Morph("eevee", ANIMAL), new Morph("vulpix", ANIMAL),
-					new Morph("golden retriever", ANIMAL), new Morph("saint bernard", ANIMAL)
+					new Morph("golden retriever", ANIMAL), new Morph("saint bernard", ANIMAL),
+					new Morph("wolf", ANIMAL)
 				)
 			)
 		);
@@ -238,7 +240,7 @@ public class Zap extends BotCommand implements Documentable
 	 * Generates a random morph with a random length
 	 * @return A string of a random morph
 	 */
-	protected String generateMorph(MorphSex what)
+	protected String generateMorph(MorphSex what, String who)
 	{
 		// this produces an integer in the range 1 to maxpo
 		// with greater probability closer to 1
@@ -251,7 +253,7 @@ public class Zap extends BotCommand implements Documentable
 		{
 			return "";
 		}
-		return generateMorph(count, what);
+		return generateMorph(count, what, who);
 	}
 	
 	/**
@@ -262,7 +264,7 @@ public class Zap extends BotCommand implements Documentable
 	 * @param count the length of the form
 	 * @return A string of a random morph
 	 */
-	protected String generateMorph(int count, MorphSex what)
+	protected String generateMorph(int count, MorphSex what, String who)
 	{
 		if(count <= 0 || count >= maxpo) return null;
 		String ret = "";
@@ -273,42 +275,53 @@ public class Zap extends BotCommand implements Documentable
 		Random currand = ThreadLocalRandom.current();
 		
 		ArrayList<Morph> apps = new ArrayList<>();
-		for(int i = 0; i < count; i++)
+		if(who.equals("242391558664486913"))
 		{
-			Morph addition;
-			int mindex = currand.nextInt(typesLen);
-			MorphType m = types.get(mindex);
-			if(m != OTHER)
+			apps.add(new Morph("feral eevee", ANIMAL));
+			types.remove(ANIMAL);
+			apps.add(new Morph("maid", CAREER));
+			types.remove(CAREER);
+			count -= 2;
+		}
+		if(count > 0)
+		{
+			for(int i = 0; i < count; i++)
 			{
-				ArrayList<Morph> currentType = (ArrayList<Morph>)transformations.get(m).clone();
-				do
+				Morph addition;
+				int mindex = currand.nextInt(typesLen);
+				MorphType m = types.get(mindex > typesLen ? mindex : 0);
+				if(m != OTHER)
 				{
-					int tracount = currentType.size();
-					int curr = currand.nextInt(tracount);
-					addition = currentType.get(curr);
-				}
-				while(!what.checkNotOpposite(addition.morphSex));
-				
-				types.remove(m);
-			}
-			else
-			{
-				if(othersLen != 1)
-				{
-					int index = currand.nextInt(othersLen);
-					addition = others.get(index);
-					others.remove(index);
+					ArrayList<Morph> currentType = (ArrayList<Morph>)transformations.get(m).clone();
+					do
+					{
+						int tracount = currentType.size();
+						int curr = currand.nextInt(tracount);
+						addition = currentType.get(curr);
+					}
+					while(!what.checkNotOpposite(addition.morphSex));
+
+					types.remove(m);
 				}
 				else
 				{
-					addition = others.get(0);
-					types.remove(OTHER);
+					if(othersLen != 1)
+					{
+						int index = currand.nextInt(othersLen);
+						addition = others.get(index);
+						others.remove(index);
+					}
+					else
+					{
+						addition = others.get(0);
+						types.remove(OTHER);
+					}
+					othersLen--;
 				}
-				othersLen--;
+				typesLen = types.size();
+				apps.add(addition);
+				if(typesLen == 0) break;
 			}
-			typesLen = types.size();
-			apps.add(addition);
-			if(typesLen == 0) break;
 		}
 		Collections.sort(apps);
 		ret = apps.stream().map((app) -> app.name + " ").reduce(ret, String::concat);
@@ -450,11 +463,11 @@ public class Zap extends BotCommand implements Documentable
 			
 			if(morph.isEmpty())
 			{
-				form = generateMorph(morphSex);
+				form = generateMorph(morphSex, otherId);
 			}
 			else if(len != 0)
 			{
-				form = generateMorph(len, morphSex);
+				form = generateMorph(len, morphSex, otherId);
 				if(form == null)
 				{
 					return "I'm sorry, " + who.getHonorific() + " but I don't"
