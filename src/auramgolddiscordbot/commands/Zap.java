@@ -152,6 +152,13 @@ public class Zap extends BotCommand implements Documentable
 				)
 			)
 		);
+		
+		for(Morph currMorph : (ArrayList<Morph>)transformations.get(ANIMAL).clone())
+		{
+			Morph altMorph = new Morph("feral " + currMorph.name, ANIMAL);
+			transformations.get(ANIMAL).add(altMorph);
+		}
+		
 		transformations.put
 		(
 			HAIR, 
@@ -223,6 +230,7 @@ public class Zap extends BotCommand implements Documentable
 			a.add(new Morph("FV" + i, SEX, MorphSex.FEMALE));
 		}
 		transformations.put(SEX, a);
+		
 		maxpo = transformations.size() + transformations.get(OTHER).size();
 	}
 	
