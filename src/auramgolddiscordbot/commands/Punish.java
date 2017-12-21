@@ -13,7 +13,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Punishes the bot
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Punish extends BotCommand implements Documentable
 {

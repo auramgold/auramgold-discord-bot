@@ -13,7 +13,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Dresses a user in a maid outfit.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Outfit extends BotCommand implements Documentable
 {

@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.entities.User;
 
 /**
  *
- * @author Lauren Smith
+ * @author auramgold
  */
 public class RefList
 {

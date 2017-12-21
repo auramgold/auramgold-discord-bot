@@ -13,7 +13,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets a meme for a given input.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Meme extends BotCommand implements Documentable
 {

@@ -7,7 +7,7 @@ package auramgolddiscordbot;
 
 /**
  * This class houses the pronouns as set by the program
- * @author Lauren Smith
+ * @author auramgold
  */
 public class PronounRef
 {
