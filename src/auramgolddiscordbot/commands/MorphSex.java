@@ -7,7 +7,7 @@ package auramgolddiscordbot.commands;
 
 /**
  *
- * @author Lauren Smith
+ * @author auramgold
  */
 public enum MorphSex
 {

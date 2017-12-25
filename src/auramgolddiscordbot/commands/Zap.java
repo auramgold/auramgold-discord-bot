@@ -90,7 +90,7 @@ class Morph implements Comparable<Morph>
 
 /**
  * Zaps a user with a morph
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Zap extends BotCommand implements Documentable
 {
@@ -238,6 +238,8 @@ public class Zap extends BotCommand implements Documentable
 	
 	/**
 	 * Generates a random morph with a random length
+	 * @param what What MorphSex setting to generate the morph with
+	 * @param who The user ID of the person being zapped
 	 * @return A string of a random morph
 	 */
 	protected String generateMorph(MorphSex what, String who)
@@ -262,6 +264,8 @@ public class Zap extends BotCommand implements Documentable
 	 * Returns empty string to signify morph reset.
 	 * 
 	 * @param count the length of the form
+	 * @param what What MorphSex setting to generate the morph with
+	 * @param who The user ID of the person being zapped
 	 * @return A string of a random morph
 	 */
 	protected String generateMorph(int count, MorphSex what, String who)

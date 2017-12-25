@@ -11,7 +11,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Says a thing in response to another thing
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Say extends BotCommand implements Documentable
 {

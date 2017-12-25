@@ -15,7 +15,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 /**
  * This class listens for events and handles them.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class AuramListener extends ListenerAdapter
 {

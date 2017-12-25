@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Lauren Smith
+ * @author auramgold
  */
 public interface Documentable
 {

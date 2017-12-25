@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * This class processes running commands
- * @author Lauren Smith
+ * @author auramgold
  */
 public class CommandRunner
 {

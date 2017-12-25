@@ -12,7 +12,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Makes the bot be something.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Be extends BotCommand implements Documentable
 {

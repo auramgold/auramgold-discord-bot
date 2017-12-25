@@ -11,7 +11,7 @@ import net.dv8tion.jda.core.entities.impl.UserImpl;
 
 /**
  * An extention of the user class that includes personal references in it.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class RefUser extends UserImpl
 {

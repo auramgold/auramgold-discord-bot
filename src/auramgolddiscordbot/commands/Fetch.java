@@ -12,7 +12,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Makes the bot get something.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Fetch extends BotCommand implements Documentable
 {

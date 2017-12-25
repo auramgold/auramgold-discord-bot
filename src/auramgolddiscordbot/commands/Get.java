@@ -17,7 +17,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets the value of a settable.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Get extends BotCommand implements Documentable
 {

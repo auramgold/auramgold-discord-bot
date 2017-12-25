@@ -12,7 +12,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets info on commands and/or a given command.
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Help extends BotCommand implements Documentable
 {

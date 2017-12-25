@@ -9,7 +9,7 @@ import auramgolddiscordbot.commands.MorphSex;
 
 /**
  *
- * @author Lauren Smith
+ * @author auramgold
  */
 
 public class PersonalReference

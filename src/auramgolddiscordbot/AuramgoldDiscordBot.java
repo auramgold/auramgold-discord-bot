@@ -25,7 +25,7 @@ import net.dv8tion.jda.core.managers.impl.PresenceImpl;
 
 /**
  * The main class for the bot
- * @author Lauren Smith
+ * @author auramgold
  */
 public class AuramgoldDiscordBot
 {

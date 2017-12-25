@@ -13,7 +13,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Praises the bot
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Reward extends BotCommand implements Documentable
 {

@@ -17,7 +17,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Sets a settable
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Set extends BotCommand implements Documentable
 {

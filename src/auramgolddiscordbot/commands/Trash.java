@@ -12,7 +12,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Gets rid of something
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Trash extends BotCommand implements Documentable
 {

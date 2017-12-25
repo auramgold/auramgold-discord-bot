@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  * Hugs a user
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Hug extends BotCommand implements Documentable
 {
