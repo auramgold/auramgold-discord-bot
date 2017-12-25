@@ -282,6 +282,7 @@ public class Zap extends BotCommand implements Documentable
 			apps.add(new Morph("maid", CAREER));
 			types.remove(CAREER);
 			count -= 2;
+			typesLen -= 2;
 		}
 		if(count > 0)
 		{
@@ -289,7 +290,7 @@ public class Zap extends BotCommand implements Documentable
 			{
 				Morph addition;
 				int mindex = currand.nextInt(typesLen);
-				MorphType m = types.get(mindex > typesLen ? mindex : 0);
+				MorphType m = types.get(mindex < typesLen ? mindex : 0);
 				if(m != OTHER)
 				{
 					ArrayList<Morph> currentType = (ArrayList<Morph>)transformations.get(m).clone();

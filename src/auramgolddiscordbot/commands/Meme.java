@@ -8,6 +8,7 @@ package auramgolddiscordbot.commands;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -103,7 +104,9 @@ public class Meme extends BotCommand implements Documentable
 			case "you're welcome":
 			case "youre welcome":
 			case "welcome":
-				return "https://youtu.be/79DijItQXMM?t=38s";
+				return ThreadLocalRandom.current().nextDouble() < 0.025
+						? "https://youtu.be/0DLzyvT4eUo?t=43s" 
+						: "https://youtu.be/79DijItQXMM?t=38s";
 			case "demiguy":
 				return "https://youtu.be/79DijItQXMM?t=50s";
 			case "why":
