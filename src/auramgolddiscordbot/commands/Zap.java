@@ -131,7 +131,7 @@ public class Zap extends BotCommand implements Documentable
 				(
 					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER),
 					new Morph("busty", OTHER), new Morph("ditzy", OTHER),
-					new Morph("collared", OTHER)
+					new Morph("collared", OTHER), new Morph("aquatic", OTHER)
 				)
 			)
 		);
@@ -150,7 +150,8 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("cow", ANIMAL), new Morph("pikachu", ANIMAL),
 					new Morph("eevee", ANIMAL), new Morph("vulpix", ANIMAL),
 					new Morph("golden retriever", ANIMAL), new Morph("saint bernard", ANIMAL),
-					new Morph("wolf", ANIMAL)
+					new Morph("wolf", ANIMAL), new Morph("guinea pig", ANIMAL),
+					new Morph("crow", ANIMAL), new Morph("raven", ANIMAL)
 				)
 			)
 		);
@@ -196,6 +197,7 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
+					new Morph("extremely tall", HEIGHT), new Morph("extremely short", HEIGHT),
 					new Morph("tall", HEIGHT), new Morph("very tall", HEIGHT), 
 					new Morph("short", HEIGHT), new Morph("very short", HEIGHT)
 				)
@@ -208,6 +210,7 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
+					new Morph("extremely heavy", WEIGHT), new Morph("extremely thin", WEIGHT),
 					new Morph("heavy", WEIGHT), new Morph("very heavy", WEIGHT),
 					new Morph("thin", WEIGHT), new Morph("very thin", WEIGHT)
 				)
@@ -221,7 +224,8 @@ public class Zap extends BotCommand implements Documentable
 				Arrays.asList
 				(
 					new Morph("cheerleader", CAREER), new Morph("maid", CAREER),
-					new Morph("baseball player", CAREER)
+					new Morph("baseball player", CAREER), new Morph("jedi", CAREER),
+					new Morph("sith", CAREER), new Morph("stormtrooper", CAREER)
 				)
 			)
 		);
@@ -483,6 +487,7 @@ public class Zap extends BotCommand implements Documentable
 			else
 			{
 				form = String.join(" ",morph);
+				form = form.replace("|", "");
 			}
 			
 			if(form.equals("normal") || form.equals("default") || form.equals(""))

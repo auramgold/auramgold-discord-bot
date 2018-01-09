@@ -7,6 +7,7 @@ package auramgolddiscordbot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
@@ -58,6 +59,16 @@ public class AuramListener extends ListenerAdapter
 					))
 		{
 			channel.sendMessage("┬─┬﻿ ノ( ゜-゜ノ)").queue();
+		}
+		else if(content.contains("thank")||content.contains("thanks")||content.contains("Thank")||content.contains("Thanks")
+				&&	(
+					Math.random()<0.1
+					||messSender.getId().equals("242391558664486913")
+					))
+		{
+			channel.sendMessage(ThreadLocalRandom.current().nextDouble() < 0.025
+						? "https://youtu.be/0DLzyvT4eUo?t=43s" 
+						: "https://youtu.be/79DijItQXMM?t=38s").queue();
 		}
 	}
 	
