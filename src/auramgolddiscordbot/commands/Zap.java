@@ -17,6 +17,7 @@ import static auramgolddiscordbot.commands.MorphType.SEX;
 import static auramgolddiscordbot.commands.MorphType.SIZE;
 import static auramgolddiscordbot.commands.MorphType.WEIGHT;
 import static auramgolddiscordbot.commands.MorphType.HEIGHT;
+import static auramgolddiscordbot.commands.MorphType.BCOUNT;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,6 +37,7 @@ enum MorphType implements Comparable<MorphType>
 	HEIGHT (2),
 	WEIGHT (3),
 	OTHER (4),
+	BCOUNT (4),
 	HAIR (5),
 	SEX (6),
 	ANIMAL (7),
@@ -129,9 +131,21 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("four-breasted", OTHER), new Morph("muscular", OTHER),
-					new Morph("busty", OTHER), new Morph("ditzy", OTHER),
-					new Morph("collared", OTHER), new Morph("aquatic", OTHER)
+					new Morph("muscular", OTHER), new Morph("busty", OTHER),
+					new Morph("collared", OTHER), new Morph("aquatic", OTHER),
+					new Morph("ditzy", OTHER)
+				)
+			)
+		);
+		transformations.put
+		(
+			BCOUNT,
+			new ArrayList<>
+			(
+				Arrays.asList
+				(
+					new Morph("four-breasted", OTHER), new Morph("six-breasted", OTHER),
+					new Morph("eight-breasted", OTHER), new Morph("ten-breasted", OTHER)
 				)
 			)
 		);
@@ -151,7 +165,10 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("eevee", ANIMAL), new Morph("vulpix", ANIMAL),
 					new Morph("golden retriever", ANIMAL), new Morph("saint bernard", ANIMAL),
 					new Morph("wolf", ANIMAL), new Morph("guinea pig", ANIMAL),
-					new Morph("crow", ANIMAL), new Morph("raven", ANIMAL)
+					new Morph("crow", ANIMAL), new Morph("raven", ANIMAL),
+					new Morph("pony", ANIMAL), new Morph("poodle", ANIMAL),
+					new Morph("honey badger", ANIMAL), new Morph("skunk", ANIMAL),
+					new Morph("poodle", ANIMAL)
 				)
 			)
 		);
@@ -225,7 +242,9 @@ public class Zap extends BotCommand implements Documentable
 				(
 					new Morph("cheerleader", CAREER), new Morph("maid", CAREER),
 					new Morph("baseball player", CAREER), new Morph("jedi", CAREER),
-					new Morph("sith", CAREER), new Morph("stormtrooper", CAREER)
+					new Morph("sith", CAREER), new Morph("stormtrooper", CAREER),
+					new Morph("magician", CAREER), new Morph("sensei", CAREER),
+					new Morph("nurse", CAREER), new Morph("police", CAREER)
 				)
 			)
 		);
