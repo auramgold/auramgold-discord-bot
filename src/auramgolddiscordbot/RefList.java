@@ -5,9 +5,13 @@
  */
 package auramgolddiscordbot;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import net.dv8tion.jda.core.entities.User;
@@ -115,7 +119,10 @@ public class RefList
 		
 		try
 		{
-			FileWriter write = new FileWriter(fnew, false);
+			Writer write = new BufferedWriter(new OutputStreamWriter
+			(
+				new FileOutputStream(fnew), "UTF-8"
+			));
 			write.write(out);
 			write.close();
 		}
