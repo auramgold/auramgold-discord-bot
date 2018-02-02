@@ -1,3 +1,6 @@
 bot_token.txt
 genderlistfile.txt
 /dependencies/
+/lib/JDA-3.3.1_284-withDependencies.jar
+/lib/JDA-3.4.0_318-withDependencies.jar
+/AuramgoldDiscordBot.jar
