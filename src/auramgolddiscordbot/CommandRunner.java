@@ -67,6 +67,8 @@ public class CommandRunner
 			case "tableflip":
 				return "I'm sorry, "+who.getHonorific()+", "+
 							"but I can't flip tables. I clean them.";
+			case "consent":
+				return "no";
 			default:
 				return commands.runCommand(command.get(0), args, who, event);
 		}
