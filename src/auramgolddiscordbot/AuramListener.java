@@ -60,15 +60,15 @@ public class AuramListener extends ListenerAdapter
 		{
 			channel.sendMessage("┬─┬﻿ ノ( ゜-゜ノ)").queue();
 		}
-		else if(content.contains("thank")||content.contains("thanks")||content.contains("Thank")||content.contains("Thanks")
+		else if((content.contains("thank")||content.contains("thanks")||content.contains("Thank")||content.contains("Thanks"))
 				&&	(
-					Math.random()<0.1
+					Math.random()<0.025
 					||messSender.getId().equals("242391558664486913")
 					))
 		{
-			channel.sendMessage(ThreadLocalRandom.current().nextDouble() < 0.025
-						? "https://youtu.be/0DLzyvT4eUo?t=43s" 
-						: "https://youtu.be/79DijItQXMM?t=38s").queue();
+			channel.sendMessage("You're Welcome!" + (ThreadLocalRandom.current().nextDouble() < 0.025
+						? "<https://youtu.be/0DLzyvT4eUo?t=43s>" 
+						: "<https://youtu.be/79DijItQXMM?t=38s>")).queue();
 		}
 	}
 	
