@@ -6,13 +6,18 @@
 package auramgolddiscordbot;
 
 import auramgolddiscordbot.commands.MorphSex;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -72,7 +77,11 @@ public class AuramgoldDiscordBot
 	 */
 	public static void updateMapFromFile() throws IOException
 	{
-		Files.lines(Paths.get(locationOfMapText)).forEach((String v)->
+		Path path = Paths.get(locationOfMapText);
+		BufferedReader reader = Files.newBufferedReader(path ,Charset.forName("UTF-8"));
+		Stream<String> stream = reader.lines();
+		stream.forEach(
+			(String v)->
 			{
 				String[] split = v.split("\\|",-1);
 				RefList.referenceList.put
