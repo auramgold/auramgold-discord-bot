@@ -133,7 +133,8 @@ public class Zap extends BotCommand implements Documentable
 				(
 					new Morph("muscular", OTHER), new Morph("busty", OTHER),
 					new Morph("collared", OTHER), new Morph("aquatic", OTHER),
-					new Morph("ditzy", OTHER)
+					new Morph("ditzy", OTHER), new Morph("illiterate", OTHER),
+					new Morph("mute", OTHER)
 				)
 			)
 		);
@@ -168,7 +169,12 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("crow", ANIMAL), new Morph("raven", ANIMAL),
 					new Morph("pony", ANIMAL), new Morph("poodle", ANIMAL),
 					new Morph("honey badger", ANIMAL), new Morph("skunk", ANIMAL),
-					new Morph("poodle", ANIMAL)
+					new Morph("poodle", ANIMAL), new Morph("vaporeon", ANIMAL),
+					new Morph("jolteon", ANIMAL), new Morph("flareon", ANIMAL),
+					new Morph("espeon", ANIMAL), new Morph("umbreon", ANIMAL),
+					new Morph("leafeon", ANIMAL), new Morph("glaceon", ANIMAL),
+					new Morph("sylveon", ANIMAL), new Morph("zorua", ANIMAL),
+					new Morph("zoroark", ANIMAL)
 				)
 			)
 		);
@@ -244,7 +250,8 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("baseball player", CAREER), new Morph("jedi", CAREER),
 					new Morph("sith", CAREER), new Morph("stormtrooper", CAREER),
 					new Morph("magician", CAREER), new Morph("sensei", CAREER),
-					new Morph("nurse", CAREER), new Morph("police", CAREER)
+					new Morph("nurse", CAREER), new Morph("police", CAREER),
+					new Morph("veterinarian", CAREER)
 				)
 			)
 		);
