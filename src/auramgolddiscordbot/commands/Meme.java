@@ -37,7 +37,7 @@ public class Meme extends BotCommand implements Documentable
 
 	@Override
 	public String getShortDocumentation() {
-		return "A suprise, to be sure, but a welcome one.";
+		return "A surprise, to be sure, but a welcome one.";
 	}
 
 	@Override
