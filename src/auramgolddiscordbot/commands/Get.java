@@ -50,6 +50,10 @@ public class Get extends BotCommand implements Documentable
 	@Override
 	public String run(String command, ArrayList<String> params, RefUser who, MessageReceivedEvent event)
 	{
+		if(params.isEmpty() || params.get(0).equals("help"))
+		{
+			return getDocumentation(params);
+		}
 		if(!params.isEmpty())
 		{
 			String extr;

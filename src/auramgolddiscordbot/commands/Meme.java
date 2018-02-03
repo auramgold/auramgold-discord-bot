@@ -120,6 +120,11 @@ public class Meme extends BotCommand implements Documentable
 			case "fuck this shit i'm out":
 			case "fuck this shit im out":
 				return "https://youtu.be/5FjWe31S_0g";
+			case "minutes in a year":
+			case "how many minutes in a year":
+			case "minutes in a year?":
+			case "how many minutes in a year?":
+				return "https://youtu.be/hj7LRuusFqo?t=17s";
 			case "":
 				return "Try the name of any prequel meme, that's a good trick.";
 			default:
