@@ -256,7 +256,7 @@ public class Zap extends BotCommand implements Documentable
 			)
 		);
 		ArrayList<Morph> a = new ArrayList<>();
-		for(int i = 1; i <= 5; i++)
+		for(int i = 1; i <= 10; ++i)
 		{
 			a.add(new Morph("MV" + i, SEX, MorphSex.MALE));
 			a.add(new Morph("FV" + i, SEX, MorphSex.FEMALE));
@@ -320,7 +320,7 @@ public class Zap extends BotCommand implements Documentable
 		}
 		if(count > 0)
 		{
-			for(int i = 0; i < count; i++)
+			for(int i = 0; i < count; ++i)
 			{
 				Morph addition;
 				int mindex = currand.nextInt(typesLen);
