@@ -18,6 +18,7 @@ import static auramgolddiscordbot.commands.MorphType.SIZE;
 import static auramgolddiscordbot.commands.MorphType.WEIGHT;
 import static auramgolddiscordbot.commands.MorphType.HEIGHT;
 import static auramgolddiscordbot.commands.MorphType.BCOUNT;
+import static auramgolddiscordbot.commands.MorphType.FUR;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,6 +39,7 @@ enum MorphType implements Comparable<MorphType>
 	WEIGHT (3),
 	OTHER (4),
 	BCOUNT (4),
+	FUR  (5),
 	HAIR (5),
 	SEX (6),
 	ANIMAL (7),
@@ -185,6 +187,21 @@ public class Zap extends BotCommand implements Documentable
 			transformations.get(ANIMAL).add(altMorph);
 		}
 		
+		transformations.put
+		(
+			FUR, 
+			new ArrayList<>
+			(
+				Arrays.asList
+				(
+					new Morph("black-furred", HAIR), new Morph("brown-furred", HAIR),
+					new Morph("red-furred", HAIR), new Morph("orange-furred", HAIR), 
+					new Morph("yellow-furred", HAIR), new Morph("green-furred", HAIR),
+					new Morph("blue-furred", HAIR), new Morph("purple-furred", HAIR),
+					new Morph("pink-furred", HAIR)
+				)
+			)
+		);
 		transformations.put
 		(
 			HAIR, 
