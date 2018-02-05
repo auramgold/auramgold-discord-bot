@@ -7,8 +7,6 @@ package auramgolddiscordbot;
 
 import auramgolddiscordbot.commands.CommandGroup;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
