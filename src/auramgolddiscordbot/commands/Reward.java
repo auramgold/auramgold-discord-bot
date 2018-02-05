@@ -21,9 +21,9 @@ public class Reward extends BotCommand implements Documentable
 	 * Constructs the command with given aliases.
 	 * @param alias
 	 */
-	public Reward(String... aliases)
+	public Reward(String... alias)
 	{
-		super(aliases);
+		super(alias);
 	}
 
 	@Override
