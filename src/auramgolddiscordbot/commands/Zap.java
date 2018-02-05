@@ -121,8 +121,8 @@ public class Zap extends BotCommand implements Documentable
 				Arrays.asList
 				(
 					new Morph("middle-aged", AGE), new Morph("elderly", AGE),
-					new Morph("baby", AGE), new Morph("young adult", AGE),
-					new Morph("teenage", AGE), new Morph("childlike", AGE)
+					new Morph("teenage", AGE), new Morph("childlike", AGE),
+					new Morph("young adult", AGE)
 				)
 			)
 		);
