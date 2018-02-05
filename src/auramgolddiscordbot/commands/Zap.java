@@ -409,6 +409,8 @@ public class Zap extends BotCommand implements Documentable
 	{
 		boolean notSelfTarget = false;
 		String person;
+		
+		// check for various cases that would be the person zapping themself
 		if(params.isEmpty())
 		{
 			person = "<@"+who.getId()+">";
@@ -425,15 +427,20 @@ public class Zap extends BotCommand implements Documentable
 		}
 		else
 		{
+			// if none of the self zapping heuristics were gotten,
+			// try a check at the end of the params array
 			person = params.get(params.size() - 1);
 			notSelfTarget = true;
 		}
 
+		// try to extract the user from the match
 		Matcher mat = AuramgoldDiscordBot.mentionExtract.matcher(person);
 		String otherId;
 		if(mat.matches())
 		{
 			otherId = mat.group(1);
+			
+			// if the user mention was found at the end, remove the mention
 			if(!params.isEmpty() && notSelfTarget)
 			{
 				params.remove(params.size() - 1);
@@ -441,7 +448,10 @@ public class Zap extends BotCommand implements Documentable
 		}
 		else
 		{
+			// if we didn't find a mention at the end, try and find one at the beginning
 			Matcher mat2 = AuramgoldDiscordBot.mentionExtract.matcher(params.get(0));
+			
+			// if a mention was found at the begnning, remove the 0th parameter
 			if(mat2.matches() && notSelfTarget)
 			{
 				otherId = mat2.group(1);
@@ -449,28 +459,41 @@ public class Zap extends BotCommand implements Documentable
 			}
 			else
 			{
+				// if a mention wasn't found, default to the calling user 
 				otherId = who.getId();
 			}
 		}
-			
+		
+		// if not zapping this bot
+		// TODO: make the hardcoded IDs constants
 		if(!otherId.equals("342757470046781450"))
 		{
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
+			// the cast is there because java can't have nice things
 			Iterator<String> morphIt = morph.iterator();
 			MorphSex morphSex = RefList.getReference(otherId).getOverrideSex();
+			
+			// TODO: move argument parsing block to separate private method
+			
 			while(morphIt.hasNext())
 			{
 				String currParam = morphIt.next();
+				
+				// params starting with - are interpreted as arguments
 				if(currParam.startsWith("-"))
 				{
 					morphIt.remove();
 					String argument = currParam.substring(1);
 					String[] argParts = argument.split(":");
+					// params starting with - that don't have a colon are
+					// treated as malformed arguments and ignored
 					if(argParts.length == 2)
 					{
 						switch(argParts[0].toLowerCase())
 						{
+							// why do i conflate gender and sex in all of these?
+							// the world may never know
 							case "gender":
 							case "sex":
 								switch(argParts[1].toLowerCase())
@@ -502,10 +525,17 @@ public class Zap extends BotCommand implements Documentable
 					}
 				}
 			}
+			
+			// end of the argument parsing block
+			
 			String form;
 			int len = 0;
+			// the ArrayList morph now has all argument elements removed
+			// so we check if it is of size 1 to try and parse for a length
 			if(morph.size() == 1)
 			{
+				// there is literally no good way to do this non-exceptionally
+				// and i'm sorry
 				try
 				{
 					len = Integer.parseInt(morph.get(0));
@@ -513,12 +543,15 @@ public class Zap extends BotCommand implements Documentable
 				catch(NumberFormatException ex){}
 			}
 			
+			// if the arraylist is of length 0, generate a morph from scratch
 			if(morph.isEmpty())
 			{
 				form = generateMorph(morphSex, otherId);
 			}
 			else if(len != 0)
 			{
+				// if the parsing of the length suceeded, try and generate a morph
+				// with that length
 				form = generateMorph(len, morphSex, otherId);
 				if(form == null)
 				{
