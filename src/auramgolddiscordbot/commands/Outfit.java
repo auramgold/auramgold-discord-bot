@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
+import auramgolddiscordbot.Constants;
 import auramgolddiscordbot.RefUser;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -60,7 +61,7 @@ public class Outfit extends BotCommand implements Documentable
 		if(mat.matches())
 		{
 			otherId = mat.group(1);
-			if(!otherId.equals("342757470046781450"))
+			if(!otherId.equals(Constants.botId))
 			{
 				return "*dresses " + "<@!" + otherId + ">" + " in a maid uniform*";
 			}

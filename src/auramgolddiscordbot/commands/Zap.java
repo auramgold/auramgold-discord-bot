@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
+import auramgolddiscordbot.Constants;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import static auramgolddiscordbot.commands.MorphType.AGE;
@@ -326,7 +327,7 @@ public class Zap extends BotCommand implements Documentable
 		Random currand = ThreadLocalRandom.current();
 		
 		ArrayList<Morph> apps = new ArrayList<>();
-		if(who.equals("242391558664486913"))
+		if(who.equals(Constants.ownerId))
 		{
 			apps.add(new Morph("feral eevee", ANIMAL));
 			types.remove(ANIMAL);
@@ -465,8 +466,7 @@ public class Zap extends BotCommand implements Documentable
 		}
 		
 		// if not zapping this bot
-		// TODO: make the hardcoded IDs constants
-		if(!otherId.equals("342757470046781450"))
+		if(!otherId.equals(Constants.botId))
 		{
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();

@@ -55,7 +55,7 @@ public class AuramListener extends ListenerAdapter
 		else if(content.contains("(╯°□°）╯︵ ┻━┻")
 				&&	(
 					Math.random()<0.1
-					||messSender.getId().equals("242391558664486913")
+					||messSender.getId().equals(Constants.ownerId)
 					))
 		{
 			channel.sendMessage("┬─┬﻿ ノ( ゜-゜ノ)").queue();
@@ -63,7 +63,7 @@ public class AuramListener extends ListenerAdapter
 		else if((content.contains("thank")||content.contains("thanks")||content.contains("Thank")||content.contains("Thanks"))
 				&&	(
 					Math.random()<0.025
-					||messSender.getId().equals("242391558664486913")
+					||messSender.getId().equals(Constants.ownerId)
 					))
 		{
 			channel.sendMessage("You're Welcome!" + (ThreadLocalRandom.current().nextDouble() < 0.025

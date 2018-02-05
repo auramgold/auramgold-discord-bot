@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
+import auramgolddiscordbot.Constants;
 import auramgolddiscordbot.PersonalReference;
 import auramgolddiscordbot.PronounRef;
 import auramgolddiscordbot.RefList;
@@ -76,7 +77,7 @@ public class Set extends BotCommand implements Documentable
 		}
 		User person = who;
 		String poss = "your";
-		if(params.size() >= 3 && who.getId().equals("242391558664486913"))
+		if(params.size() >= 3 && who.getId().equals(Constants.ownerId))
 		{
 			Matcher mat = AuramgoldDiscordBot.userExtract.matcher(params.get(params.size()-1));
 			if(mat.matches())
