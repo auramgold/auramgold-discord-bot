@@ -50,7 +50,7 @@ public class Meme extends BotCommand implements Documentable
 			case "hello there!":
 				return "General " + who.getName() + ", you are a bold **one**!";
 			case "plagueis":
-				if(who.getId().equals(Constants.ownerId))
+				if(who.getId().equals(Constants.coderId))
 				{
 					return "Did you ever hear the tragedy of Darth Plagueis the Wise? "
 							+ "I thought not. It's not a story the Jedi would tell you. "

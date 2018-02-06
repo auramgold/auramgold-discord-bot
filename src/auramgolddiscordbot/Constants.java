@@ -12,5 +12,5 @@ package auramgolddiscordbot;
 public class Constants
 {
 	public static final String botId = "342757470046781450";
-	public static final String ownerId = "242391558664486913";
+	public static final String coderId = "242391558664486913";
 }

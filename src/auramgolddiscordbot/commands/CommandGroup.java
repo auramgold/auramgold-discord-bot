@@ -49,6 +49,7 @@ public class CommandGroup
 			addCommand(new Be("be"));
 			addCommand(new Zap("zap", "pew"));
 			addCommand(new Outfit("dress", "outfit", "uniform"));
+			addCommand(new Pet("pet"));
 		}
 		catch (Exception ex)
 		{

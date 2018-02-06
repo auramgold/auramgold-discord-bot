@@ -327,7 +327,7 @@ public class Zap extends BotCommand implements Documentable
 		Random currand = ThreadLocalRandom.current();
 		
 		ArrayList<Morph> apps = new ArrayList<>();
-		if(who.equals(Constants.ownerId))
+		if(who.equals(Constants.coderId))
 		{
 			apps.add(new Morph("feral eevee", ANIMAL));
 			types.remove(ANIMAL);
