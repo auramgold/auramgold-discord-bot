@@ -102,7 +102,7 @@ public class Get extends BotCommand implements Documentable
 						if(!setNam.equals(gend.honorific))
 						{
 							ret = otherUserName +" ha" + (isPlural ? "ve" : "s")
-									+ " me call " + who.getPronouns().object + " "
+									+ " me call " + gend.object + " "
 									+ setNam + ", " + who.getHonorific() + ".";
 						}
 						else
