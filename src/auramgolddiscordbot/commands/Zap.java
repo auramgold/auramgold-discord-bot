@@ -172,12 +172,12 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("crow", ANIMAL), new Morph("raven", ANIMAL),
 					new Morph("pony", ANIMAL), new Morph("poodle", ANIMAL),
 					new Morph("honey badger", ANIMAL), new Morph("skunk", ANIMAL),
-					new Morph("poodle", ANIMAL), new Morph("vaporeon", ANIMAL),
-					new Morph("jolteon", ANIMAL), new Morph("flareon", ANIMAL),
-					new Morph("espeon", ANIMAL), new Morph("umbreon", ANIMAL),
-					new Morph("leafeon", ANIMAL), new Morph("glaceon", ANIMAL),
-					new Morph("sylveon", ANIMAL), new Morph("zorua", ANIMAL),
-					new Morph("zoroark", ANIMAL)
+					new Morph("poodle", ANIMAL), new Morph("elephant", ANIMAL),
+					new Morph("vaporeon", ANIMAL), new Morph("jolteon", ANIMAL),
+					new Morph("flareon", ANIMAL), new Morph("espeon", ANIMAL),
+					new Morph("umbreon", ANIMAL), new Morph("leafeon", ANIMAL),
+					new Morph("glaceon", ANIMAL), new Morph("sylveon", ANIMAL),
+					new Morph("zorua", ANIMAL), new Morph("zoroark", ANIMAL)
 				)
 			)
 		);
@@ -269,7 +269,7 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("sith", CAREER), new Morph("stormtrooper", CAREER),
 					new Morph("magician", CAREER), new Morph("sensei", CAREER),
 					new Morph("nurse", CAREER), new Morph("police", CAREER),
-					new Morph("veterinarian", CAREER)
+					new Morph("veterinarian", CAREER), new Morph("genie", CAREER)
 				)
 			)
 		);
@@ -388,7 +388,7 @@ public class Zap extends BotCommand implements Documentable
 				+ "OR maid!zap (usermention) (morph)...\n"
 				+ "	Zaps (usermention) with (morph)\n"
 				+ "\n"
-				+ "		(usermention) is either an @mention or their user ID number\n"
+				+ "		(usermention) is an @mention\n"
 				+ "		If not put, defaults to using executing user.\n"
 				+ "\n"
 				+ "		(morph) is a string of words separated by spaces\n"
