@@ -47,6 +47,8 @@ public class PronounRef
 	 */
 	public String honorific;
 	
+	public String littleName;
+	
 	/**
 	 *
 	 * @param s
@@ -56,8 +58,9 @@ public class PronounRef
 	 * @param r
 	 * @param t
 	 * @param h
+	 * @param ln
 	 */
-	public PronounRef(String s, String o, String pA, String pP, String r, String t, String h)
+	public PronounRef(String s, String o, String pA, String pP, String r, String t, String h, String ln)
 	{
 		this.subject = s;
 		this.object = o;
@@ -66,5 +69,6 @@ public class PronounRef
 		this.reflexive = r;
 		this.title = t;
 		this.honorific = h;
+		this.littleName = ln;
 	}
 }

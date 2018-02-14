@@ -20,13 +20,13 @@ public class PersonalReference
 	 */
 	public static PronounRef[] gender = 
 	{
-		new PronounRef("they", "them", "their", "theirs", "themself", "Mx.", "comrade"),
-		new PronounRef("he", "him", "his", "his", "himself", "Mr.", "sir"),
-		new PronounRef("she", "her", "her", "hers", "herself", "Ms.", "ma'am"),
-		new PronounRef("ze", "zir", "zir", "zirs", "zirself", "Mx.", "comrade"),
-		new PronounRef("xe", "xem", "xyr", "xyrs", "xemself", "Mx.", "comrade"),
-		new PronounRef("ey", "em", "eir", "eirs", "eirself", "Mx.", "comrade"),
-		new PronounRef("ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade"),
+		new PronounRef("they", "them", "their", "theirs", "themself", "Mx.", "comrade","enby"),
+		new PronounRef("he", "him", "his", "his", "himself", "Mr.", "sir","boy"),
+		new PronounRef("she", "her", "her", "hers", "herself", "Ms.", "ma'am","girl"),
+		new PronounRef("ze", "zir", "zir", "zirs", "zirself", "Mx.", "comrade","enby"),
+		new PronounRef("xe", "xem", "xyr", "xyrs", "xemself", "Mx.", "comrade","enby"),
+		new PronounRef("ey", "em", "eir", "eirs", "eirself", "Mx.", "comrade","enby"),
+		new PronounRef("ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade","enby"),
 	};
 	
 	/**

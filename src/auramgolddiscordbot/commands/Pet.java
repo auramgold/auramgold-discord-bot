@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.Constants;
+import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -70,7 +71,8 @@ public class Pet extends BotCommand implements Documentable
 		}
 		else
 		{
-			return "*pets <@"+targetId+">*";
+			return "*pets <@"+targetId+">*\n"
+				+ "Good " + RefList.getPronounRef(targetId).littleName + ".";
 		}
 	}
 	
