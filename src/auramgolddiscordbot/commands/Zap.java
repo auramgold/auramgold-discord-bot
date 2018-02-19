@@ -284,6 +284,16 @@ public class Zap extends BotCommand implements Documentable
 		maxpo = transformations.size() + transformations.get(OTHER).size();
 	}
 	
+	private int iterateRandom(int max, int iter, Random rand)
+	{
+		int ret = max;
+		for(int i = 0; i < iter; ++i)
+		{
+			ret = 1 + rand.nextInt(ret);
+		}
+		return ret;
+	}
+	
 	/**
 	 * Generates a random morph with a random length
 	 * @param what What MorphSex setting to generate the morph with
@@ -295,7 +305,7 @@ public class Zap extends BotCommand implements Documentable
 		// this produces an integer in the range 1 to maxpo
 		// with greater probability closer to 1
 		Random currand = ThreadLocalRandom.current();
-		int count = 1 + (currand.nextInt(1 + currand.nextInt(maxpo)) % maxpo);
+		int count = iterateRandom(maxpo, 4, currand) % maxpo;
 		// this means that at maxpo, the least likely number to be picked
 		// only then will it reset the form
 		// this is to prevent form resets from happening ALL THE TIME
