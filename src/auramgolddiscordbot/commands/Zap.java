@@ -286,6 +286,7 @@ public class Zap extends BotCommand implements Documentable
 	
 	private int iterateRandom(int max, int iter, Random rand)
 	{
+		if(max <= 1) return 1;
 		int ret = max;
 		for(int i = 0; i < iter; ++i)
 		{
@@ -296,24 +297,31 @@ public class Zap extends BotCommand implements Documentable
 	
 	/**
 	 * Generates a random morph with a random length
-	 * @param what What MorphSex setting to generate the morph with
+	 * @param data The specific info of how to generate the morph
 	 * @param who The user ID of the person being zapped
-	 * @return A string of a random morph
+	 * @return the java.lang.String
 	 */
-	protected String generateMorph(MorphSex what, String who)
+	protected String generateMorph(MorphGenData data, String who)
 	{
-		// this produces an integer in the range 1 to maxpo
-		// with greater probability closer to 1
-		Random currand = ThreadLocalRandom.current();
-		int count = iterateRandom(maxpo, 4, currand) % maxpo;
-		// this means that at maxpo, the least likely number to be picked
-		// only then will it reset the form
-		// this is to prevent form resets from happening ALL THE TIME
-		if(count == maxpo)
+		//System.out.println(data.maxLen+":"+maxpo);
+		int max = Math.min(data.maxLen + 1,maxpo);
+		
+		int count;
+		if(max > 0)
+		{
+			Random currand = ThreadLocalRandom.current();
+			count = iterateRandom(max, data.weight, currand) % max;
+		}
+		else
+		{
+			count = 0;
+		}
+		
+		if(count == max)
 		{
 			return "";
 		}
-		return generateMorph(count, what, who);
+		return generateMorph(count, data, who);
 	}
 	
 	/**
@@ -322,13 +330,13 @@ public class Zap extends BotCommand implements Documentable
 	 * Returns empty string to signify morph reset.
 	 * 
 	 * @param count the length of the form
-	 * @param what What MorphSex setting to generate the morph with
+	 * @param data The specific info of how to generate the morph
 	 * @param who The user ID of the person being zapped
-	 * @return A string of a random morph
+	 * @return the java.lang.String
 	 */
-	protected String generateMorph(int count, MorphSex what, String who)
+	protected String generateMorph(int count, MorphGenData data, String who)
 	{
-		if(count <= 0 || count >= maxpo) return null;
+		if(count <= 0 || count >= maxpo) return "";
 		String ret = "";
 		ArrayList<MorphType> types = new ArrayList<>(Arrays.asList(MorphType.class.getEnumConstants()));
 		int typesLen = types.size();
@@ -362,7 +370,7 @@ public class Zap extends BotCommand implements Documentable
 						int curr = currand.nextInt(tracount);
 						addition = currentType.get(curr);
 					}
-					while(!what.checkNotOpposite(addition.morphSex));
+					while(!data.sex.checkNotOpposite(addition.morphSex));
 
 					types.remove(m);
 				}
@@ -403,8 +411,9 @@ public class Zap extends BotCommand implements Documentable
 				+ "\n"
 				+ "		(morph) is a string of words separated by spaces\n"
 				+ "		If not specified, defaults to random morph\n"
-				+ "		If numeric, tries to generate a form morph with that many components.\n"
 				+ "		If argument -sex:(M/F) is included, makes sure a sex morph that is generated is that one.\n"
+				+ "		If argument -max:(int) is included, makes the max length that int.\n"
+				+ "		If argument -weight:(int) is included, makes the weighting towards shorter morphs that int.\n"
 				+ "		If 'default' or 'normal', resets form"
 				+ "```";
 	}
@@ -483,6 +492,8 @@ public class Zap extends BotCommand implements Documentable
 			// the cast is there because java can't have nice things
 			Iterator<String> morphIt = morph.iterator();
 			MorphSex morphSex = RefList.getReference(otherId).getOverrideSex();
+			int maxLen = maxpo;
+			int weight = 4;
 			
 			// TODO: move argument parsing block to separate private method
 			
@@ -529,6 +540,24 @@ public class Zap extends BotCommand implements Documentable
 										break;
 								}
 								break;
+							case "max":
+							case "maximum":
+								try
+								{
+									int tmp = Integer.parseInt(argParts[1]);
+									if(tmp < 0) break;
+									maxLen = Math.min(tmp, maxLen);
+								}
+								catch(NumberFormatException ex){}
+								break;
+							case "weight":
+								try
+								{
+									int tmp = Integer.parseInt(argParts[1]);
+									if(tmp < 0) break;
+									weight = tmp;
+								}
+								catch(NumberFormatException ex){}
 							default:
 								break;
 						}
@@ -538,37 +567,14 @@ public class Zap extends BotCommand implements Documentable
 			
 			// end of the argument parsing block
 			
+			MorphGenData data = new MorphGenData(morphSex, maxLen, weight);
+			
 			String form;
-			int len = 0;
-			// the ArrayList morph now has all argument elements removed
-			// so we check if it is of size 1 to try and parse for a length
-			if(morph.size() == 1)
-			{
-				// there is literally no good way to do this non-exceptionally
-				// and i'm sorry
-				try
-				{
-					len = Integer.parseInt(morph.get(0));
-				}
-				catch(NumberFormatException ex){}
-			}
 			
 			// if the arraylist is of length 0, generate a morph from scratch
 			if(morph.isEmpty())
 			{
-				form = generateMorph(morphSex, otherId);
-			}
-			else if(len != 0)
-			{
-				// if the parsing of the length suceeded, try and generate a morph
-				// with that length
-				form = generateMorph(len, morphSex, otherId);
-				if(form == null)
-				{
-					return "I'm sorry, " + who.getHonorific() + " but I don't"
-							+ " have enough options to generate something that "
-							+ "long.";
-				}
+				form = generateMorph(data, otherId);
 			}
 			else
 			{
@@ -587,7 +593,7 @@ public class Zap extends BotCommand implements Documentable
 						+ RefList.getReference(otherId).getPronouns().possAdj
 						+ " default form.*";
 			}
-			if(!(morph.isEmpty() || len != 0))
+			if(!morph.isEmpty())
 			{
 				form += " ";
 				RefList.getReference(otherId).morphState = form;

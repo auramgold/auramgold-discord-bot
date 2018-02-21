@@ -7,7 +7,7 @@ package auramgolddiscordbot;
 
 /**
  *
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Constants
 {

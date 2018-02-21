@@ -15,7 +15,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  *
- * @author Lauren Smith
+ * @author auramgold
  */
 public class Pet extends BotCommand implements Documentable
 {
