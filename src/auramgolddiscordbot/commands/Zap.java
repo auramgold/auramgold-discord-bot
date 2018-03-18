@@ -137,7 +137,7 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("muscular", OTHER), new Morph("busty", OTHER),
 					new Morph("collared", OTHER), new Morph("aquatic", OTHER),
 					new Morph("ditzy", OTHER), new Morph("illiterate", OTHER),
-					new Morph("mute", OTHER)
+					new Morph("mute", OTHER), new Morph("pet", OTHER)
 				)
 			)
 		);
@@ -173,6 +173,8 @@ public class Zap extends BotCommand implements Documentable
 					new Morph("pony", ANIMAL), new Morph("poodle", ANIMAL),
 					new Morph("honey badger", ANIMAL), new Morph("skunk", ANIMAL),
 					new Morph("poodle", ANIMAL), new Morph("elephant", ANIMAL),
+					new Morph("cheetah", ANIMAL),
+					
 					new Morph("vaporeon", ANIMAL), new Morph("jolteon", ANIMAL),
 					new Morph("flareon", ANIMAL), new Morph("espeon", ANIMAL),
 					new Morph("umbreon", ANIMAL), new Morph("leafeon", ANIMAL),
@@ -406,7 +408,7 @@ public class Zap extends BotCommand implements Documentable
 				+ "OR maid!zap (usermention) (morph)...\n"
 				+ "	Zaps (usermention) with (morph)\n"
 				+ "\n"
-				+ "		(usermention) is an @mention\n"
+				+ "		(usermention) is an @mention or a user ID string\n"
 				+ "		If not put, defaults to using executing user.\n"
 				+ "\n"
 				+ "		(morph) is a string of words separated by spaces\n"
@@ -454,7 +456,7 @@ public class Zap extends BotCommand implements Documentable
 		}
 
 		// try to extract the user from the match
-		Matcher mat = AuramgoldDiscordBot.mentionExtract.matcher(person);
+		Matcher mat = AuramgoldDiscordBot.userExtract.matcher(person);
 		String otherId;
 		if(mat.matches())
 		{
@@ -469,7 +471,7 @@ public class Zap extends BotCommand implements Documentable
 		else
 		{
 			// if we didn't find a mention at the end, try and find one at the beginning
-			Matcher mat2 = AuramgoldDiscordBot.mentionExtract.matcher(params.get(0));
+			Matcher mat2 = AuramgoldDiscordBot.userExtract.matcher(params.get(0));
 			
 			// if a mention was found at the begnning, remove the 0th parameter
 			if(mat2.matches() && notSelfTarget)
@@ -492,7 +494,8 @@ public class Zap extends BotCommand implements Documentable
 			// the cast is there because java can't have nice things
 			Iterator<String> morphIt = morph.iterator();
 			MorphSex morphSex = RefList.getReference(otherId).getOverrideSex();
-			int maxLen = maxpo;
+			// TODO: Add settable default max lengths and weights per user
+			int maxLen = maxpo - 1;
 			int weight = 4;
 			
 			// TODO: move argument parsing block to separate private method
