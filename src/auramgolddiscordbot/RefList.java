@@ -83,7 +83,7 @@ public class RefList
 	 * @param user The <code>`User`</code> object to get it from
 	 * @return Their program name
 	 */
-	public static PronounRef getPronounRef(User user)
+	public static PronounData getPronounRef(User user)
 	{
 		PersonalReference r = getReference(user.getId());
 		return r.getPronouns();
@@ -94,7 +94,7 @@ public class RefList
 	 * @param id Their user id as a string
 	 * @return Their program name
 	 */
-	public static PronounRef getPronounRef(String id)
+	public static PronounData getPronounRef(String id)
 	{
 		PersonalReference r = getReference(id);
 		return r.getPronouns();

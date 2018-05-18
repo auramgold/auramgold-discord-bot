@@ -7,12 +7,11 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.PersonalReference;
-import auramgolddiscordbot.PronounRef;
+import auramgolddiscordbot.PronounData;
 import java.util.ArrayList;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
-import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -83,7 +82,7 @@ public class Get extends BotCommand implements Documentable
 				}
 				PersonalReference target = RefList.getReference(otherId);
 				String otherUserName = otherRef.getName();
-				PronounRef gend = RefList.getPronounRef(otherId);
+				PronounData gend = RefList.getPronounRef(otherId);
 				boolean isPlural = otherUserName.equals("they");
 				String ret;
 				switch(params.get(0))
@@ -92,7 +91,10 @@ public class Get extends BotCommand implements Documentable
 					case "sex":
 					case "pronoun":
 					case "pronouns":
-						ret = otherUserName + " use" + (isPlural ? "" : "s") 
+						String usedName = target.getName();
+						if(usedName.isEmpty())
+							usedName = otherUserName;
+						ret = usedName + " use" + (isPlural ? "" : "s") 
 								+ " " + gend.subject
 								+ "/" + gend.object + " pronouns, "
 								+ who.getHonorific() + ".";
@@ -100,15 +102,17 @@ public class Get extends BotCommand implements Documentable
 						
 					case "name":
 						String setNam = RefList.getName(otherId);
+						boolean usesPlural = gend.subject.equals("they");
+						String refSubject = AuramgoldDiscordBot.capitalizeFirstLetter(gend.subject);
 						if(!setNam.equals(gend.honorific))
 						{
-							ret = otherUserName +" ha" + (isPlural ? "ve" : "s")
+							ret = refSubject +" ha" + (usesPlural ? "ve" : "s")
 									+ " me call " + gend.object + " "
 									+ setNam + ", " + who.getHonorific() + ".";
 						}
 						else
 						{
-							ret = otherUserName + " ha" + (isPlural ? "ve" : "s")
+							ret = refSubject + " ha" + (usesPlural ? "ve" : "s")
 									+ " no set name with me"
 									+ ", " + who.getHonorific() + ".";
 						}

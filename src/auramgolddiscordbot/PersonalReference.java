@@ -14,20 +14,6 @@ import auramgolddiscordbot.commands.MorphSex;
 
 public class PersonalReference
 {
-
-	/**
-	 * The list of <code>`PronounRef`</code>s that the program can use.
-	 */
-	public static PronounRef[] gender = 
-	{
-		new PronounRef("they", "them", "their", "theirs", "themself", "Mx.", "comrade","enby"),
-		new PronounRef("he", "him", "his", "his", "himself", "Mr.", "sir","boy"),
-		new PronounRef("she", "her", "her", "hers", "herself", "Ms.", "ma'am","girl"),
-		new PronounRef("ze", "zir", "zir", "zirs", "zirself", "Mx.", "comrade","enby"),
-		new PronounRef("xe", "xem", "xyr", "xyrs", "xemself", "Mx.", "comrade","enby"),
-		new PronounRef("ey", "em", "eir", "eirs", "eirself", "Mx.", "comrade","enby"),
-		new PronounRef("ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade","enby"),
-	};
 	
 	/**
 	 * The set name of a given user
@@ -54,6 +40,8 @@ public class PersonalReference
 	 */
 	protected int pronounIndex;
 	
+	protected PronounData pronouns;
+	
 	/**
 	 * Default constructor
 	 */
@@ -77,6 +65,7 @@ public class PersonalReference
 		morphState = morph;
 		defaultOverride = over;
 		acceptsZaps = zappable;
+		pronouns = PronounData.values()[ind];
 	}
 	
 	/**
@@ -103,9 +92,9 @@ public class PersonalReference
 	 * Gets the pronoun reference of a user
 	 * @return The <code>`PronounRef`</code> object of their pronoun index
 	 */
-	public PronounRef getPronouns()
+	public PronounData getPronouns()
 	{
-		return gender[pronounIndex];
+		return pronouns;
 	}
 	
 	/**
@@ -122,13 +111,11 @@ public class PersonalReference
 	 * @param index The index to set it to
 	 * @return Their new PronounRef.
 	 */
-	public PronounRef setPronouns(int index)
+	public PronounData setPronouns(int index)
 	{
-		if(0 <= index && index < gender.length)
-		{
-			pronounIndex = index;
-		}
-		return gender[pronounIndex];
+		pronounIndex = index;
+		pronouns = PronounData.values()[index];
+		return PronounData.values()[index];
 	}
 	
 	/**

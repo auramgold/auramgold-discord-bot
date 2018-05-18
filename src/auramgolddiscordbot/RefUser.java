@@ -53,7 +53,7 @@ public class RefUser extends UserImpl
 	 * Gets the <code>`PronounRef`</code> for the person
 	 * @return Their <code>`PronounRef`</code> object
 	 */
-	public PronounRef getPronouns()
+	public PronounData getPronouns()
 	{
 		return pers.getPronouns();
 	}

@@ -8,7 +8,7 @@ package auramgolddiscordbot.commands;
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.Constants;
 import auramgolddiscordbot.PersonalReference;
-import auramgolddiscordbot.PronounRef;
+import auramgolddiscordbot.PronounData;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import java.util.regex.Matcher;
@@ -22,7 +22,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
  */
 public class Set extends BotCommand implements Documentable
 {
-
+	String validPronouns = "";
 	/**
 	 * Constructs the command with given aliases.
 	 * @param alias
@@ -30,13 +30,7 @@ public class Set extends BotCommand implements Documentable
 	public Set(String... alias)
 	{
 		super(alias);
-	}
-	
-	@Override
-	public String getDocumentation(ArrayList<String> what)
-	{
-		String validPronouns = "";
-		for(PronounRef pro: PersonalReference.gender)
+		for(PronounData pro: PronounData.values())
 		{
 			if(!validPronouns.equals(""))
 			{
@@ -44,6 +38,12 @@ public class Set extends BotCommand implements Documentable
 			}
 			validPronouns += pro.subject + "/" + pro.object;
 		}
+	}
+	
+	@Override
+	public String getDocumentation(ArrayList<String> what)
+	{
+		
 		return "```maid!set [settable] ...\n"
 				+ "================\n"
 				+ "	maid!set gender/sex/pronoun/pronouns [value]\n"
@@ -106,21 +106,14 @@ public class Set extends BotCommand implements Documentable
 					RefList.referenceList.put(person.getId(),pers);
 					RefList.updateFile();
 					return "Set " + poss + " gender pronouns to "
-							+ PersonalReference.gender[genderIndex].subject + "/"
-							+ PersonalReference.gender[genderIndex].object;
+							+ pers.getPronouns().subject + "/"
+							+ pers.getPronouns().object;
 				}
 				else
 				{
 					return "I can refer to people by these pronouns, "
 							+ who.getHonorific() + ":"
-							+ "```"
-							+ "\nThey/them"
-							+ "\nHe/him"
-							+ "\nShe/her"
-							+ "\nZe/zir"
-							+ "\nXe/xem"
-							+ "\nEy/em"
-							+ "\nZe/hir```";
+							+ "```" + validPronouns.replace(",", "\r\n") + "```";
 				}
 			case "name":
 				ArrayList<String> toJoin = (ArrayList<String>)params.clone();
