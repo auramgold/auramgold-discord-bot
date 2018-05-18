@@ -7,6 +7,7 @@ package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
 import auramgolddiscordbot.Constants;
+import auramgolddiscordbot.PersonalReference;
 import auramgolddiscordbot.RefList;
 import auramgolddiscordbot.RefUser;
 import static auramgolddiscordbot.commands.MorphType.AGE;
@@ -489,14 +490,29 @@ public class Zap extends BotCommand implements Documentable
 		// if not zapping this bot
 		if(!otherId.equals(Constants.botId))
 		{
+			PersonalReference target = RefList.getReference(otherId);
 			ArrayList<String> morph;
 			morph = (ArrayList<String>)params.clone();
 			// the cast is there because java can't have nice things
 			Iterator<String> morphIt = morph.iterator();
-			MorphSex morphSex = RefList.getReference(otherId).getOverrideSex();
+			MorphSex morphSex = target.getOverrideSex();
 			// TODO: Add settable default max lengths and weights per user
 			int maxLen = maxpo - 1;
 			int weight = 4;
+			
+			if(!target.acceptsZaps)
+			{
+				boolean isPlural = false;
+				String name = target.getName();
+				if(name.isEmpty())
+				{
+					name = target.getPronouns().subject;
+					isPlural = target.getPronounIndex() == 0;
+				}
+				return "I'm sorry, " + who.getHonorific() + ", but "
+					+ name + " " + (isPlural ? "do" : "does") + " not allow me "
+					+ "to zap " + target.getPronouns().object + ".";
+			}
 			
 			// TODO: move argument parsing block to separate private method
 			

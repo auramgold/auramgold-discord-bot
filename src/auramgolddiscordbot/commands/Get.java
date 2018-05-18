@@ -6,6 +6,7 @@
 package auramgolddiscordbot.commands;
 
 import auramgolddiscordbot.AuramgoldDiscordBot;
+import auramgolddiscordbot.PersonalReference;
 import auramgolddiscordbot.PronounRef;
 import java.util.ArrayList;
 import auramgolddiscordbot.RefList;
@@ -35,7 +36,7 @@ public class Get extends BotCommand implements Documentable
 	public String getDocumentation(ArrayList<String> what)
 	{
 		return "```maid!get [settable] [usermention]\n"
-				+ "	Where [settable] is gender/sex/pronouns/pronoun/name/form/morph/appearance\n"
+				+ "	Where [settable] is gender/sex/pronouns/pronoun/name/form/morph/appearance/zappability/zappable/canzap\n"
 				+ "	And [usermention] is either an @ mention of a user\n"
 				+ "	Or their user ID that you can retrieve from developer mode\n"
 				+ "```";
@@ -80,7 +81,7 @@ public class Get extends BotCommand implements Documentable
 					otherId = who.getId();
 					otherRef = who;
 				}
-				RefList.getReference(otherId);
+				PersonalReference target = RefList.getReference(otherId);
 				String otherUserName = otherRef.getName();
 				PronounRef gend = RefList.getPronounRef(otherId);
 				boolean isPlural = otherUserName.equals("they");
@@ -127,6 +128,20 @@ public class Get extends BotCommand implements Documentable
 									+ " currently in " + otherRef.getMorph()
 									+ ", " + who.getHonorific() + ".";
 						break;
+					case "zappable":
+					case "canzap":
+					case "zappability":
+						String nam = otherRef.getAuramName();
+						boolean usePlural = false;
+						if(nam.isEmpty())
+						{
+							nam = gend.subject;
+							usePlural = nam.equals("they");
+						}
+						nam = AuramgoldDiscordBot.capitalizeFirstLetter(nam);
+						return nam + " " + (usePlural ? "do" : "does")
+							+ (target.acceptsZaps ? "" : " not")
+							+ " allow me to zap " + gend.object + ".";
 					default:
 						return "Error: " + params.get(0) + " is not a gettable value.";
 				}

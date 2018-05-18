@@ -90,7 +90,8 @@ public class AuramgoldDiscordBot
 							split[2],
 							Integer.parseInt(split.length>3?split[3]:"0"),
 							split[4],
-							MorphSex.values()[(Integer.parseInt(split[5]))]
+							MorphSex.values()[(Integer.parseInt(split[5]))],
+							split[6].equals("true")
 						)
 				);
 			}

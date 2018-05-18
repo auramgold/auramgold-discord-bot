@@ -112,7 +112,8 @@ public class RefList
 			PersonalReference v = entry.getValue();
 			out = out.concat(k + "|" + v.getPronounIndex() + "|" + v.getName()
 							+ "|" + v.netSpoil + "|" + v.morphState 
-							+ "|" + v.defaultOverride.which + "\n");
+							+ "|" + v.defaultOverride.which
+							+ "|" + v.zappableString() + "\n");
 		}
 		File fnew=new File(AuramgoldDiscordBot.locationOfMapText);
 		

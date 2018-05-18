@@ -40,6 +40,8 @@ public class PersonalReference
 	public String morphState;
 	
 	public MorphSex defaultOverride;
+	
+	public boolean acceptsZaps;
 
 	/**
 	 * The net amount the bot is "spoiled" by the given user.<br/>
@@ -57,7 +59,7 @@ public class PersonalReference
 	 */
 	public PersonalReference()
 	{
-		this(0, "", 0, "", MorphSex.NONE);
+		this(0, "", 0, "", MorphSex.NONE, true);
 	}
 	
 	/**
@@ -67,13 +69,14 @@ public class PersonalReference
 	 * @param spoil Their net spoilage
 	 * @param morph The morph state they are currently in
 	 */
-	public PersonalReference(int ind, String nam, int spoil, String morph, MorphSex over)
+	public PersonalReference(int ind, String nam, int spoil, String morph, MorphSex over, boolean zappable)
 	{
 		pronounIndex = ind;
 		name = nam;
 		netSpoil = spoil;
 		morphState = morph;
 		defaultOverride = over;
+		acceptsZaps = zappable;
 	}
 	
 	/**
@@ -154,6 +157,11 @@ public class PersonalReference
 	public void setOverrideSex(MorphSex what)
 	{
 		this.defaultOverride = what;
+	}
+	
+	public String zappableString()
+	{
+		return acceptsZaps?"true":"false";
 	}
 	
 	/**

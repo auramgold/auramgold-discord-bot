@@ -58,7 +58,10 @@ public class Set extends BotCommand implements Documentable
 				+ "================\n"
 				+ "	maid!set zapsex/defaultzap [value]\n"
 				+ "		Where [value] is male or female\n"
-				+ "		Affects the default override sex given from maid!zap"
+				+ "		Affects the default override sex given from maid!zap\n"
+				+ "================\n"
+				+ "	maid!set zappable/zappability/canzap [value]\n"
+				+ "		Turns on or off the ability to be zapped by maid!zap"
 				+ "```";
 	}
 
@@ -159,6 +162,27 @@ public class Set extends BotCommand implements Documentable
 				RefList.updateFile();
 				return "Set " + poss + " default morph zap sex to "
 						+ morphSex.name().toLowerCase() + ".";
+			case "zappable":
+			case "canzap":
+			case "zappability":
+				boolean canZap;
+				switch(params.get(1))
+				{
+					case "no":
+					case "false":
+					case "dont":
+					case "don't":
+					case "off":
+					case "disable":
+						canZap = false;
+						break;
+					default:
+						canZap = true;
+				}
+				pers.acceptsZaps = canZap;
+				RefList.referenceList.put(person.getId(), pers);
+				RefList.updateFile();
+				return "Set " + poss + " zappability to " + pers.zappableString() + ".";
 			default:
 				return "Error: " + params.get(0) + " is not a settable value.";
 		}
