@@ -192,6 +192,9 @@ public class PersonalReference
 			case "ze/hir":
 			case "6":
 				return 6;//ze/hir
+			case "it":
+			case "it/it":
+				return 7;
 			default:
 				return 0; //they/them
 		}

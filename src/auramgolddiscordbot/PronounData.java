@@ -28,7 +28,8 @@ public enum PronounData
 	ZEZIR		(3, "ze", "zir", "zir", "zirs", "zirself", "Mx.", "comrade", "enby"),
 	XEXEM		(4, "xe", "xem", "xyr", "xyrs", "xemself", "Mx.", "comrade", "enby"),
 	EYEM		(5, "ey", "em", "eir", "eirs", "eirself", "Mx.", "comrade", "enby"),
-	ZEHIR		(6, "ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade", "enby");
+	ZEHIR		(6, "ze", "hir", "hir", "hirs", "hirself", "Mx.", "comrade", "enby"),
+	ITITS		(7, "it", "it", "its", "its", "itself", "Mx.", "comrade", "enby");
 	
 	public final int id;
 	
