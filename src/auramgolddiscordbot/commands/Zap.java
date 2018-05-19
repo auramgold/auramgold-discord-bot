@@ -198,11 +198,11 @@ public class Zap extends BotCommand implements Documentable
 			(
 				Arrays.asList
 				(
-					new Morph("black-furred", HAIR), new Morph("brown-furred", HAIR),
-					new Morph("red-furred", HAIR), new Morph("orange-furred", HAIR), 
-					new Morph("yellow-furred", HAIR), new Morph("green-furred", HAIR),
-					new Morph("blue-furred", HAIR), new Morph("purple-furred", HAIR),
-					new Morph("pink-furred", HAIR)
+					new Morph("black-furred", FUR), new Morph("brown-furred", FUR),
+					new Morph("red-furred", FUR), new Morph("orange-furred", FUR), 
+					new Morph("yellow-furred", FUR), new Morph("green-furred", FUR),
+					new Morph("blue-furred", FUR), new Morph("purple-furred", FUR),
+					new Morph("pink-furred", FUR)
 				)
 			)
 		);
