@@ -86,9 +86,12 @@ public class Set extends BotCommand implements Documentable
 			if(mat.matches())
 			{
 				String otherId = mat.group(1);
-				RefList.getReference(otherId);
+				PersonalReference target = RefList.getReference(otherId);
 				person = AuramgoldDiscordBot.api.getUserById(otherId);
-				poss = person.getName() + "'s";
+				String name = target.getName();
+				if(name.isEmpty())
+					name = person.getName();
+				poss = name + "'s";
 			}
 		}
 		PersonalReference pers = RefList.getReference(person.getId());
@@ -105,7 +108,7 @@ public class Set extends BotCommand implements Documentable
 					pers.setPronouns(genderIndex);
 					RefList.referenceList.put(person.getId(),pers);
 					RefList.updateFile();
-					return "Set " + poss + " gender pronouns to "
+					return "Set " + poss + " pronouns to "
 							+ pers.getPronouns().subject + "/"
 							+ pers.getPronouns().object;
 				}
@@ -129,7 +132,7 @@ public class Set extends BotCommand implements Documentable
 			case "defaultzap":
 			case "zapsex":
 				MorphSex morphSex;
-				switch(params.get(1))
+				switch(params.get(1).toLowerCase())
 				{
 					case "m":
 					case "male":
@@ -159,7 +162,10 @@ public class Set extends BotCommand implements Documentable
 			case "canzap":
 			case "zappability":
 				boolean canZap;
-				switch(params.get(1))
+				String switchVal = "";
+				if(params.size() > 1)
+					switchVal = params.get(1);
+				switch(switchVal)
 				{
 					case "no":
 					case "false":
@@ -167,7 +173,12 @@ public class Set extends BotCommand implements Documentable
 					case "don't":
 					case "off":
 					case "disable":
+					case "nope":
+					case "unzappable":
 						canZap = false;
+						break;
+					case "":
+						canZap = !pers.acceptsZaps;
 						break;
 					default:
 						canZap = true;
