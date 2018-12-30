@@ -93,7 +93,7 @@ public class AuramListener extends ListenerAdapter
 				boolean isPage = false;
 				try
 				{
-					isPage = checkPageExists(link);
+					isPage = AuramgoldDiscordBot.checkPageExists(link);
 				}
 				catch (Exception ex)
 				{
@@ -113,15 +113,6 @@ public class AuramListener extends ListenerAdapter
 				channel.sendMessage(mess).queue();
 			}
 		}
-	}
-	
-	static boolean checkPageExists(String link) throws MalformedURLException, IOException
-	{
-		URL url = new URL(link);
-		HttpURLConnection connect = (HttpURLConnection) url.openConnection();
-		connect.setRequestMethod("HEAD");
-		int status = connect.getResponseCode();
-		return status != 404;
 	}
 	
 }

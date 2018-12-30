@@ -50,6 +50,7 @@ public class CommandGroup
 			addCommand(new Zap("zap", "pew"));
 			addCommand(new Outfit("dress", "outfit", "uniform"));
 			addCommand(new Pet("pet"));
+			addCommand(new Tale("tale"));
 		}
 		catch (Exception ex)
 		{

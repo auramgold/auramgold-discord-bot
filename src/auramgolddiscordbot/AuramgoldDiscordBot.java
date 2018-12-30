@@ -8,6 +8,9 @@ package auramgolddiscordbot;
 import auramgolddiscordbot.commands.MorphSex;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -150,6 +153,15 @@ public class AuramgoldDiscordBot
 			return original;
 		}
 		return original.substring(0, 1).toUpperCase() + original.substring(1);
+	}
+	
+	public static boolean checkPageExists(String link) throws MalformedURLException, IOException
+	{
+		URL url = new URL(link);
+		HttpURLConnection connect = (HttpURLConnection) url.openConnection();
+		connect.setRequestMethod("HEAD");
+		int status = connect.getResponseCode();
+		return status != 404;
 	}
 	
 	/**
